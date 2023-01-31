@@ -21,7 +21,7 @@ timezone: Asia/Seoul
 
 title: Junyeong Ahn's Blog                          # the main title
 
-tagline: 나는 내가 생각하는 것보다\n훨씬 강하다!   # it will display as the sub-title
+tagline: "나는 내가 생각하는 것보다\n훨씬 강하다!"   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, CV, research, study blog.
