@@ -1,0 +1,294 @@
+%-------------------------
+% Resume in Latex
+% Original Author : Sourabh Bajaj
+% Adaptation : Hyunggi Chang
+% License : MIT
+% https://github.com/changh95/latex_resume_template_kor
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-2pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSummary}[1]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      #1
+    \end{tabular*}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeEmployment}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeProject}[2]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} \\
+      \small{#2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeResearch}[5]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} {\small #4 \vspace{-2pt}} & \textit{\small #5} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeHonor}[2]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSkills}[1]{
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      #1
+    \end{tabular*}
+}
+
+\newcommand{\resumeCommunity}[3]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\newcommand{\resumeEmploymentListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeEmploymentListEnd}{\end{itemize}}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://ahnjun0.github.io}{\Large Junyeong Ahn}} & Github: ahnjun0 $|$ Kaggle: junyeongahn  \\
+  \href{https://ahnjun0.github.io}{http://ahnjun0.github.io} & Email : \href{mailto:jyahn.IT@gmail.com}{jyahn.IT@gmail.com} \\
+   {} & Language : Korean - Native, English - Proficient \\ \\
+\end{tabular*}
+
+%-----------Summary-----------------
+% \section{Summary}
+%     \resumeSummary{
+%     My main interest lies at [Your interest areas]. \\ 
+%     My favourite applications are [Your favourite application areas] . \\ 
+%     I am a [Your personality and traits].
+%     }
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Pusan University}{Busan, South Korea}
+      {Bachelor of Engineering}{Mar. 2022 -- Current}
+      \resumeItemListStart
+          \resumeItem{Computer Science and Engineering}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Busan Dong High School}{Busan, South Korea}
+      {High School Diploma}{Mar. 2018 -- Feb. 2021}
+      \resumeItemListStart
+          \resumeItem{Natural Sciences}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------Technical Skills-----------------
+
+\section{Technical Skills}
+  \resumeSubHeadingListStart
+    \resumeSkills{\textbf{Programming} - Python(Scikit-learn, Pandas, Numpy, etc.), C, C++}
+    \resumeSkills{\textbf{Front-End} - JavaScript, HTML5/CSS}
+    \resumeSkills{\textbf{Version Control} - Git(Sourcetree), Github}
+    \resumeSkills{\textbf{Development Methodology} - Agile, DevOps}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------------
+% \section{Employment}
+%   \resumeEmploymentListStart
+%     \resumeEmployment
+%       {[Company1]}{Seoul, South Korea}
+%       {[Role1] (Full-time)}{Apr. 20XX - Present}
+%         \resumeItemListStart
+%             \resumeItem{[Role1] with \href{https://www.google.com}{\color{blue} [some Link]}.}
+%             \resumeItem{[Role2].}
+%             \resumeItem{[Role3].}
+%         \resumeItemListEnd   
+        
+%     \resumeEmployment
+%       {[Company2]}{London, UK}
+%       {[Role2] (Part-time)}{Oct. 20XX - Dec. 20XX}
+%       \resumeItemListStart
+%           \resumeItem{[Role1].}
+%       \resumeItemListEnd
+      
+%   \resumeEmploymentListEnd
+
+
+%-----------Talks-----------------
+\section{Honor and Awards}
+    \resumeSubHeadingListStart
+    
+        \resumeHonor{2022 Pusan University AI Landmark Classification Contest}{Oct. 2022}
+            \resumeItemListStart
+                \resumeItem{Gold Prize (1st)}
+            \resumeItemListEnd
+
+        \resumeHonor{2022 Busan Coding Contest}{Sep. 2022}
+            \resumeItemListStart
+                \resumeItem{Bronze Prize (6th)}
+            \resumeItemListEnd
+        
+        \resumeHonor{The 1st AI-based Education Youth Camp}{Dec. 2019}
+            \resumeItemListStart
+                \resumeItem{Grand Prize (2nd)}
+            \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------Projects-----------------
+
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeProject
+      {Turtle neck prevention and posture correction service with Flex Sensor}
+         {As part of an assignment for the Adventure Design class(2022, 1st Grade). Made using Arduino and Flex Sensor. }
+         \resumeItemListStart
+             \resumeItem{Team Leader \\
+             \textbf{Key achievements}: \\ 
+             1. Derivation of regression formula according to angle value and production of prototype PCB \\
+             2. Responsible for version control using Git \\
+             3. Overall project management and development process arrangement}
+             \resumeItem{Final Demonstrator}
+         \resumeItemListEnd
+    
+    % \resumeProject
+    %   {[Project]}
+    %   {[Project Description]}
+    %   \resumeItemListStart
+    %     \resumeItem{[Role1]}
+    %     \resumeItem{[Role2]}
+    %     \resumeItem{[Role3]}
+    % \resumeItemListEnd
+    
+    % \resumeProject
+    %   {[Minor Project]}
+    % {[Project Description]}
+
+  \resumeSubHeadingListEnd
+
+
+
+
+
+%-----------EXPERIENCE-----------------
+% \section{Research Experiences}
+%   \resumeSubHeadingListStart
+
+%     \resumeResearch
+%       {[Lab Name], [School name]}{Seoul, South Korea}
+%       {[Position] (Advisor: [Name of Lab head])}{}{Jan. 20XX - Mar. 20XX}
+%     \resumeResearch
+%       {[Lab Name], [School name]}{Seoul, South Korea}
+%       {[Position] (Advisor: [Name of Lab head])}{}{Jan. 20XX - Sept. 20XX}
+
+%   \resumeSubHeadingListEnd
+
+    
+%-----------Papers-----------------
+% \section{Papers}
+%     \resumeSubHeadingListStart
+%         \resumeItem{[\textbf{Paper Name}] [Authors] [Journal Name] [Other citation details}
+%         \resumeItem{[\textbf{Paper Name}] [Authors] [Journal Name] [Other citation details}
+%         \resumeItem{[\textbf{Paper Name}] [Authors] [Journal Name] [Other citation details}
+%     \resumeSubHeadingListEnd
+
+%-----------Community-----------------
+% \section{Community}
+%     \resumeSubHeadingListStart
+%         \resumeCommunity{[Role]}{20XX -- Present}
+%         {[Community Name]}
+        
+%         \resumeCommunity{[Role]}{20XX -- Present}
+%         {[Community Name]}
+%         \resumeItemListStart
+%             \resumeItem{[Some Event information]}
+%             \resumeItem{Some Group information}
+%         \resumeItemListEnd    
+
+%     \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}
