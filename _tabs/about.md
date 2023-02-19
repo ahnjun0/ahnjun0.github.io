@@ -18,4 +18,10 @@ last_modified_at: 2023-02-07 15:43:00 +0900
 
 **If you do not see the file, [please click here to download](/assets/file/CV.pdf) the PDF file.**  (The `<embed>` tag may not apply in certain browsers.)
 
+---
+
+## Portfolio와 다양한 경험들이 포함된 Notion을 보시려면 다음 링크를 클릭하세요. (Korean Only)
+
+### [**Notion 바로가기**](https://www.notion.so/ahnjun0/Curriculum-Vitae-4dafa4ec06c04058876b56ef9951feee?pvs=4)
+
 Updated 2023.02.11
