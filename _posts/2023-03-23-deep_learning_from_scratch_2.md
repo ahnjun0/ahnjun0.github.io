@@ -22,7 +22,7 @@ last_modified_at: 2023-03-23 11:01:18 +0900
 
 ## Chapter 2. 퍼셉트론
 
-퍼셉트론(Perceptron)은 다수의 신호를 입력으로 받아 하나의 신호를 출력하는 알고리즘이다. (논리회로설계 시간에 배웠던 Multiplexer가 순간 생각났다.)
+퍼셉트론(Perceptron)은 다수의 신호를 입력으로 받아 하나의 신호를 출력하는 알고리즘이다. (논리회로및설계 시간에 배웠던 Multiplexer가 순간 생각났다.)
 
 ![그림 2-1. 입력이 <span class=](/assets/img/2023/SCRATCH_1%20study/ch2/2-1.png){: width="250px"}_그림 2-1. 입력이 $n$개인 퍼셉트론_
 
