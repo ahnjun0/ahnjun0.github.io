@@ -1,5 +1,5 @@
 ---
-title:  "[Study][밑바닥부터 시작하는 딥러닝 1] Ⅱ. Chapter 2"
+title:  "[Study][밑바닥딥러닝1] Ⅱ. Chapter 2 퍼셉트론"
 excerpt: "Deep Learning from Scratch 1, Ch2"
 
 categories:
@@ -11,7 +11,7 @@ toc: true
 toc_sticky: true
 
 date: 2023-03-23 01:26:49 +0900
-last_modified_at: 2023-03-23 01:26:49 +0900
+last_modified_at: 2023-03-23 11:01:18 +0900
 ---
 부산대학교 정보컴퓨터공학부 AID 동아리, 스터디 '밑바닥부터 시작하는 딥러닝 1권 (홀수팀)' 스터디 관련 질문들과, 추가로 공부하면 좋을 내용을 기록합니다.
 

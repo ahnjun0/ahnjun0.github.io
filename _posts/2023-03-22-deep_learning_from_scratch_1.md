@@ -1,5 +1,5 @@
 ---
-title:  "[Study][밑바닥부터 시작하는 딥러닝 1] Ⅰ. Chapter 1"
+title:  "[Study][밑바닥딥러닝1] Ⅰ. Chapter 1 헬로 파이썬"
 excerpt: "Deep Learning from Scratch 1, Ch1"
 
 categories:
