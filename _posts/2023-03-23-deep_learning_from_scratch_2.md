@@ -12,7 +12,7 @@ toc_sticky: true
 math: true
 
 date: 2023-03-23 01:26:49 +0900
-last_modified_at: 2023-03-24 00:17:26 +0900
+last_modified_at: 2023-03-29 18:12:14 +0900
 ---
 부산대학교 정보컴퓨터공학부 AID 동아리, 스터디 '밑바닥부터 시작하는 딥러닝 1권 (홀수팀)' 스터디 관련 질문들과, 추가로 공부하면 좋을 내용을 기록합니다.
 
@@ -149,9 +149,20 @@ XOR 게이트의 진리표(Truth Table)는 다음과 같다.
 | 1       | 0       | 1     |
 | 1       | 1       | 0     |
 
-XOR(eXclusive-OR)
+XOR(eXclusive-OR) 게이트는, (이미 충분히 예상되겠지만) 그렇게 단순하지 않다. 우선 XOR 게이트 회로를 보자.
+
+![3개의 Gate를 이용한 XOR 회로](https://upload.wikimedia.org/wikipedia/commons/a/a2/254px_3gate_XOR.jpg){: width="250px"}_3개의 Gate를 이용한 XOR 회로, [from Wikimedia, User &#39;Crystallizedcarbon&#39;. CC-BY-SA 4.0](https://commons.wikimedia.org/wiki/File:254px_3gate_XOR.jpg?uselang=ko)_
+
+XOR 게이트는 진리표를 보면, 절대 단층 퍼셉트론으로 구현할 수 없음을 알 수 있다. 대신 회로를 보면 알겠지만, NAND 게이트와 OR 게이트, AND 게이트를 조합하여 XOR 게이트를 구현할 수 있음을 알 수 있다.
 
 ```python
 def XOR(x1, x2):
-    return AND(NAND(x1, x2), OR(x1, x2))
+    s = NAND(x1, x2), OR(x1, x2)
+    return AND(s)
 ```
+
+위의 코드처럼, 퍼셉트론은 여러 층을 쌓아 다층 구조를 형성할 수 있다. 이를 다층 퍼셉트론(Multi-Layer Perceptron, MLP)라고 한다.
+
+다층 퍼셉트론은 XOR 게이트와 같이, 비선형적으로 분리되는 데이터에 대해서도 제대로 된 학습이 가능하다. 입력층과 출력층 사이 중간층은, 숨어 있는 층이라고 해서 **은닉층**이라고 부르며, 1개 이상의 은닉층이 있는 신경망을 [**심층 신경망**](https://terms.naver.com/entry.naver?docId=3686123&cid=42346&categoryId=42346), 다양한 심층 신경망을 기반으로 하는 머신 러닝의 한 분야를 **딥러닝**(Deep Learning) 이라고 한다.
+
+다음 장부터, 퍼셉트론을 이용한 신경망에 대해 학습하면서, 심층 신경망에 대해 더 자세히 다룰 예정이다.
