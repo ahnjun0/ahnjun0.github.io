@@ -279,7 +279,7 @@ s = model.predict
 
 신경망의 손실은 **손실 함수**를 이용해 구합니다.
 
-손실 함수의 종류는 MSE, MAE, Entropy, Cross-Entropy, Binary Crossentropy 등으로 굉장히 다양한데 해당 교재에서는 다중 클래스 분류 신경망에서 사용하는 손실 함수로 교차 엔트로피 오차(Cross-Entropy Error)를 사용하였습니다.
+손실 함수의 종류는 MSE, MAE, Entropy, Cross-Entropy, Binary Crossentropy 등으로 굉장히 다양한데 해당 교재에서는 다중 클래스 분류 신경망에서 사용하는 손실 함수로 교차 엔트로피 오차(Cross-Entropy Error _ [Wikipedia](https://en.wikipedia.org/wiki/Cross-entropy))를 사용하였습니다.
 
 ### 1.3.2 미분과 기울기
 
