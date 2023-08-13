@@ -164,11 +164,122 @@ h = np.matmul(x, W1) + b1
 
 $$ \sigma (x) =  \frac{\mathrm{1}}{\mathrm{1} + exp(-x)} $$
 
+시그모이드 함수를 이용하여 비선형 변환을 하고, 신경망의 추론을 구현하는 파이썬 코드는 다음과 같습니다.
+
+```python
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+x = np.random.randn(10,2)
+W1 = np.random.randn(2,4)
+b1 = np.random.randn(4)
+W2 = np.random.randn(4,3)
+b2 = np.random.randn(3)
+
+h = np.matmul(x, W1) + b1
+a = sigmoid(h) # 활성화_Activation
+s = np.matmul(a, W2) + b2
+```
+
+x의 형상(shape)은 (10,2)이고, s의 형상은 (10,3)입니다. 이는 10개의 데이터가 한 번에 처리되었고, 각 데이터는 3차원 데이터로 변환되었다는 뜻입니다.
+
+그런데 이 신경망은 3차원 데이터를 출력합니다. 따라서 각 차원의 값을 이용하여 3-클래스 분류를 할 수 있고, 각 차원은 각 클래스에 대응하는 점수(score)가 됩니다.
+
+즉, 실제로 분류를 한다면 출력층에서 가장 큰 값을 내뱉는 뉴런에 해당하는 클래스가 예측 결과가 되는 것입니다.
+
 ### 1.2.2 계층으로 클래스화 및 순전파 구현
+
+신경망에서 하는 처리를 계층(layer)로 구현해 봅시다.
+
+완전연결계층에 의한 변환을 Affine 계층, 시그모이드 함수에 의한 변환을 Sigmoid 계층으로 구현하였습니다.
+
+또한 기본 변환을 수행하는 메서드(**순전파**)의 이름은 forward()로 하였습니다.
+
+> Affine 계층이란?
+> 유클리드 기하학의 Affine 변환([Wikipedia](https://en.wikipedia.org/wiki/Affine_transformation))을 수행하는 계층입니다.
+> Affine 변환이란 직선과 평형성을 그대로 유지하는 기하 변환입니다. 즉, 어떠한 벡터를 선형 변환한 후 평행 이동시킨 것이라 볼 수 있습니다.
+
+교재에서 제공하는 다음 '구현 규칙'을 따라 구현해봤습니다.
+
+- 모든 계층은 forward() _(순전파)_ 와 backward() _(역전파)_ 메서드를 가진다.
+- 모든 계층은 인스턴스 변수인 params와 grads를 가진다.
+
+위의 구현 규칙에 따라, Sigmoid 계층과 Affine 계층을 구현해 보았습니다.
+
+```python
+class Sigmoid:
+    def __init__(self) -> None:
+        self.params = []
+    
+    def forward(self, x):
+        return 1 / (1 + np.exp(-x))
+    
+class Affine:
+    def __init__(self, W, b) -> None:
+        self.params = [W, b]
+    
+    def forward(self, x):
+        W, b = self.params
+        return np.matmul(x, W) + b
+```
+
+이 때, Sigmoid 계층에는 매개변수가 따로 없으므로 params는 빈 리스트로 초기화하고, Affine 계층은 가중치와 편향의 영향을 받으므로 params에 보관하고, forward(x)에서 순전파 처리를 구현합니다.
+
+위에서 구현한 두 계층을 사용하고, 아래의 같이 구성된 신경망의 추론을 구현해 보겠습니다.
+
+![형상 확인](/assets/img/2023/SCRATCH_2 study/ch1/fig 1-11.png){: width="400px"}
+
+```python
+class TwoLayerNet:
+    def __init__(self, input_size, hidden_size, output_size) -> None:
+        I, H, O = input_size, hidden_size, output_size
+        
+        W1 = np.random.randn(I, H)
+        b1 = np.random.randn(H)
+        W2 = np.random.randn(H, O)
+        b2 = np.random.randn(O)
+        
+        # 계층 생성
+        self.layers = [
+            Affine(W1, b1),
+            Sigmoid(),
+            Affine(W2, b2)
+        ]
+        
+        self.params = []
+        for layer in self.layers:
+            self.params += layer.params
+        
+    def predict(self, x):
+        for layer in self.layers:
+            x = layer.forward(x)
+        return x
+
+
+## 추론 수행
+
+x = np.random.randn(10, 2)
+model = TwoLayerNet(2, 4, 3)
+s = model.predict
+```
+
+이상으로 입력 데이터 x에 대한 점수(s)를 구할 수 있습니다.
 
 ## 1.3 신경망의 학습
 
+신경망이 추론을 수행할 때, 학습을 먼저 수행하고 그 학습된 매개변수를 이용해 추론을 수행하여야 합니다.
+
+한편, 신경망의 학습은 **최적의 매개변수 값을 찾는 과정**입니다.
+
 ### 1.3.1 손실 함수
+
+신경망 학습이 제대로 되어 가고 있는지 알기 위한 '척도'가 필수입니다. 수학 공부할 때 답지 없이 문제를 계속 풀다 보면, 이상한(?) 방향으로 학습이 이루어질 수 있는 것과 비슷합니다.
+
+학습 단계의 특정 시점에서 신경망의성능을 나타내는 척도로 손실(loss)를 사용합니다. 손실은 학습 데이터와 신경망 예측 결과를 비교하여 예측이 얼마나 나쁜가를 나타내는 스칼라값입니다.
+
+신경망의 손실은 **손실 함수**를 이용해 구합니다.
+
+손실 함수의 종류는 MSE, MAE, Entropy, Cross-Entropy, Binary Crossentropy 등으로 굉장히 다양한데 해당 교재에서는 다중 클래스 분류 신경망에서 사용하는 손실 함수로 교차 엔트로피 오차(Cross-Entropy Error)를 사용하였습니다.
 
 ### 1.3.2 미분과 기울기
 
