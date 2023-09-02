@@ -1,6 +1,6 @@
 ---
 title:  "[Study][밑바닥딥러닝2] Ⅰ. Chapter 1 신경망 복습"
-excerpt: "Deep Learning from Scratch 2, Ch2"
+excerpt: "Deep Learning from Scratch 2, Ch1"
 
 categories:
   - Study
