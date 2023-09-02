@@ -116,19 +116,101 @@ idx의 원소가 중복되었을 때를 대비해서, dW에 값을 '할당'하�
 
 앞에서 이야기했듯, 이번에 개선할 것은 은닉층 이후의 처리인, 행렬곱과 Softmax 계층의 계산에서 병목을 해결하는 것이 목표입니다. 이 때, **네거티브 샘플링** 기법을 사용합니다. Softmax 대신 네거티브 샘플링을 이용하면 어휘가 아무리 많아져도 일정하게 계산량을 낮을 수준에서 억제할 수 있습니다.
 
-### 4.2.1 은닉층 이후 계산의 문제점
+### 4.2.1 은닉층 이후 계산의 문제점 / 4.2.2 다중 분류에서 이진 분류로
 
-### 4.2.2 다중 분류에서 이진 분류로
+은닉층 이후에서 계산이 많이 걸리는 부분은, 두 부분으로 나눌 수 있습니다,
+
+- 은닉층의 뉴런과 가중치 행렬(즉, $W_{out}$)의 곱
+- Softmax 계층의 계산
+
+우선, 첫 번째 문제는 거대한 두 행렬의 행렬곱을 구하는 문제입니다. 순전파 때와 역전파 때, 같은 계을 수행하기 때문에 이 행렬곱 계산을 가볍게 만드는 것은 무척이나 절실한 일입니다.
+
+두 번째로, Softmax에서도 같은 문제가 발생합니다. 다음 Softmax의 식을 봅시다.
+
+$$ y_k= \frac{exp(s_k)}{\sum_{i=1}^{N}exp(s_i)} $$
+
+이 때, $N$은 어휘 수입니다. Softmax를 계산하기 위해선, 분모의 계산을 $N$번 수행하여야 분모의 값을 얻을 수 있으므로, 계산이 $N$번 필요합니다. 이 또한 $N$이 커지면 계산량이 비례하여 증가하므로 가벼운 계산이 절실합니다.
+
+이를 해결하기 위해, **네거티브 샘플링 기법**을 사용합니다.
+
+이때까지는,
 
 ### 4.2.3 시그모이드 함수와 교차 엔트로피 오차
 
 ### 4.2.4 다중 분류에서 이진 분류로(구현)
+
+```python
+class EmbeddingDot:
+    def __init__(self, W) -> None:
+        self.embed = Embedding(W)
+        self.params = self.embed.params
+        self.grads = self.embed.grads
+        self.cache = None
+        
+    def forward(self, h, idx):
+        target_W = self.embed.forward(idx)
+        out = np.sum(target_W * h, axis=1)
+        
+        self.cache = (h, target_W)
+        return out
+    
+    def backward(self, dout):
+        h, target_W = self.cache
+        dout = dout.reshape(dout.shape[0], 1)
+        
+        dtarget_W = dout * h
+        self.embed.backward(dtarget_W)
+        dh = dout * target_W
+        return dh
+```
 
 ### 4.2.5 네거티브 샘플링
 
 ### 4.2.6 네거티브 샘플링의 샘플링 기법
 
 ### 4.2.7 네거티브 샘플링 구현
+
+```python
+
+class NegativeSamplingLoss:
+    def __init__(self, W, corpus, power=0.75, sample_size=5) -> None:
+        self.sample_size = sample_size
+        self.sampler = UnigramSampler(corpus, power, sample_size)
+        self.loss_layers = [SigmoidWithLoss() for _ in range(sample_size + 1)]
+        self.embed_dot_layers = [EmbeddingDot(W) for _ in range(sample_size + 1)]
+        self.params, self.grads = [], []
+        
+        for layer in self.embed_dot_layers:
+            self.params += layer.params
+            self.grads += layer.grads
+    
+    def forward(self, h, target):
+        batch_size = target.shape[0]
+        negative_sample = self.sampler.get_negative_sample(target)
+        
+        # Positive
+        score = self.embed_dot_layers[0].forward(h, target)
+        correct_label = np.ones(batch_size, dtype=np.int32)
+        loss = self.loss_layers[0].forward(score, correct_label)
+        
+        # Negative
+        negative_label = np.zeros(batch_size, dtype=np.int32)
+        for i in range(self.sample_size):
+            negative_target = negative_sample[:, 1]
+            score = self.embed_dot_layers[1+i].forward(h, negative_target)
+            loss += self.loss_layers[1+i].forward(score, negative_label)
+            
+        return loss
+        
+    def backward(self, dout=1):
+        dh = 0
+        for l0, l1 in zip(self.loss_layers, self.embed_dot_layers):
+            dscore = l0.backward(dout)
+            dh += l1.backward(dscore)
+            
+        return dh
+
+```
 
 ## 4.3 개선된 word2vec 학습
 
