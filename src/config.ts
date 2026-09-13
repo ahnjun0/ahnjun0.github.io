@@ -22,7 +22,7 @@ export const hero = {
 export const about = {
   paragraphs: [
     "**LLM 파인튜닝**부터 **공공데이터 분석**, **게임 AI**, **브라우저 확장**까지. 모델 한 층에 머무르기보다, 문제를 정의하는 일부터 배포해서 쓰이게 하는 일까지 전부 해보는 쪽을 택해 왔습니다.",
-    "2022년 학부 AI 대회 금상 두 개로 시작했고, 군에서 보안관제·체계관제를 맡았습니다. 2026년 복학 후 KAIST 몰입캠프, AID 회장, 카카오테크캠퍼스를 연달아 지나왔고, 지금은 제5회 대학 연합 딥러닝 챌린지 2026의 최종 결과를 기다리고 있습니다.",
+    "2022년 학부 AI 대회 금상 두 개로 시작했고, 국방통합데이터센터에서 보안관제·체계관제를 맡았습니다. 2026년 복학 후 KAIST 몰입캠프, AID 회장, 카카오테크캠퍼스를 연달아 지나왔고, 지금은 제5회 대학 연합 딥러닝 챌린지 2026의 최종 결과를 기다리고 있습니다.",
   ],
   skills: ["Python", "PyTorch", "LoRA / vLLM", "Django", "FastAPI", "TypeScript", "Docker", "LiveKit", "Chrome Extension"],
 };
@@ -49,7 +49,7 @@ export const experience: Experience[] = [
       "Roomie 프론트엔드, KaHook! (Three.js 파티 게임), Momento (React Native + NestJS)",
     ],
   },
-  { title: "대한민국 육군", org: "보안관제 · 체계관제", range: "2024.03 – 2025.09" },
+  { title: "대한민국 육군 · 국방통합데이터센터(DIDC)", org: "관제병 · 보안관제 · 체계관제", range: "2024.03 – 2025.09" },
   {
     title: "밑바닥부터 시작하는 딥러닝 스터디", org: "운영 · AID", range: "2023.03 – 2023.05", link: "https://github.com/Deep-Learning-from-Scratch-1",
     bullets: ["2주 1회 스터디 조직·운영, 챕터별 노트를 블로그에 기록 (→ Notes)"],
