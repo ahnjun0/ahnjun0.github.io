@@ -5,10 +5,12 @@ import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { site, about, experience, awards, certifications, beyond } from "../config";
+import { publicRepoCount } from "../lib/github";
 
 const all = await getCollection("projects", ({ data }) => !data.draft);
 const featured = all.filter((p) => p.data.featured).sort((a, b) => a.data.featured! - b.data.featured!);
 const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const repoCount = await publicRepoCount("ahnjun0");
 ---
 <Base>
   <Hero />
@@ -27,7 +29,7 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
       <div class="tl">
         {experience.map((e) => (
           <div class:list={["it", { now: e.now }]}>
-            <div class="hd"><span class="t">{e.title}</span><span class="mono">{e.range}</span></div>
+            <div class="hd"><span class="t">{e.link ? <a href={e.link} target="_blank" rel="noopener" class="tl-link">{e.title} ↗</a> : e.title}</span><span class="mono">{e.range}</span></div>
             <div class="o">{e.org}</div>
             {e.bullets && <ul>{e.bullets.map((b) => <li>{b}</li>)}</ul>}
           </div>
@@ -54,7 +56,7 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
     <Section id="contact" title="Contact">
       <p class="cl">이야기 나누고 싶다면,</p>
       <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
-      <p class="cs">GitHub <a href={site.github}>@ahnjun0</a> · solved.ac <a href={site.solvedac}>ahnjun0</a> · 아마추어무선 {site.callsign}</p>
+      <p class="cs">GitHub <a href={site.github}>@ahnjun0</a>{repoCount !== null && ` (public 저장소 ${repoCount}개)`} · solved.ac <a href={site.solvedac}>ahnjun0</a> · 아마추어무선 {site.callsign}</p>
     </Section>
   </div>
 </Base>
@@ -65,4 +67,5 @@ const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
   .mail { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
   .cs { color: var(--ink2); margin: 14px 0 0; font-size: 15px; }
   .cs a { border-bottom: 1px solid var(--line); }
+  .tl-link:hover { color: var(--accent); }
 </style>

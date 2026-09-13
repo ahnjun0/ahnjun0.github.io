@@ -28,15 +28,15 @@ export const about = {
 };
 
 export type Experience = {
-  title: string; org: string; range: string; now?: boolean; bullets?: string[];
+  title: string; org: string; range: string; now?: boolean; bullets?: string[]; link?: string;
 };
 export const experience: Experience[] = [
   {
-    title: "카카오테크캠퍼스 4기 · IRYA", org: "인프라 · 백엔드", range: "2026.05 – 현재", now: true,
+    title: "카카오테크캠퍼스 4기 · IRYA", org: "인프라 · 백엔드", range: "2026.05 – 현재", now: true, link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
     bullets: ["AI 화상면접 지원 서비스의 LiveKit 자체 호스팅, Caddy HTTPS, 배포 파이프라인 담당"],
   },
   {
-    title: "AID 부산대 AI 동아리", org: "회장", range: "2026.03 – 2026.08",
+    title: "AID 부산대 AI 동아리", org: "회장", range: "2026.03 – 2026.08", link: "https://github.com/PNU-AID",
     bullets: [
       "회원 40여 명 운영, 세미나 기획·발표, 연구소 견학·홈커밍데이 주최",
       "공식 웹사이트와 대회 자동채점·리더보드 시스템 구축 (Django, PostgreSQL, Docker)",
@@ -50,6 +50,10 @@ export const experience: Experience[] = [
     ],
   },
   { title: "대한민국 육군", org: "보안관제 · 체계관제", range: "2024.03 – 2025.09" },
+  {
+    title: "밑바닥부터 시작하는 딥러닝 스터디", org: "운영 · AID", range: "2023.03 – 2023.05", link: "https://github.com/Deep-Learning-from-Scratch-1",
+    bullets: ["2주 1회 스터디 조직·운영, 챕터별 노트를 블로그에 기록 (→ Notes)"],
+  },
   { title: "부산대학교 정보컴퓨터공학부", org: "학사 · 3학년", range: "2022.03 – 현재" },
 ];
 
