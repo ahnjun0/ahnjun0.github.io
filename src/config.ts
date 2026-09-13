@@ -1,4 +1,6 @@
 // 사이트 전체에서 쓰는 정적 콘텐츠. 프로젝트/노트는 src/content/ 의 마크다운으로 관리.
+// 한국어(ko)와 영어(en) 두 벌. 페이지에서는 content(lang) 으로 가져온다.
+import type { Lang } from "./i18n";
 export const site = {
   name: "안준영",
   nameEn: "Junyeong Ahn",
@@ -76,3 +78,77 @@ export const awards: Award[] = [
 
 export const certifications = ["PCCE Lv.3", "육상무선통신사", "무인동력비행장치 4종"];
 export const beyond = ["📡 HAM 6K5EHL", "NOAA 위성 수신", "등산", "드론", "차량 수리"];
+
+
+// ---------------- English ----------------
+export const siteEn = {
+  ...site,
+  name: "Junyeong Ahn",
+  tagline: "I define problems, solve them with data, and ship them as services",
+  description:
+    "Portfolio of Junyeong Ahn — Computer Science undergraduate at Pusan National University. LLM fine-tuning, public-data pipelines, game AI, browser extensions: anywhere between the model and the deployment.",
+};
+
+export const heroEn = {
+  greeting: "Hello 👋",
+  lead: "I define problems, solve them with data, and ship them as services.",
+  sub: "Third-year Computer Science student at Pusan National University, working between AI and full-stack.",
+};
+
+export const aboutEn = {
+  paragraphs: [
+    "From **LLM fine-tuning** to **public-data analysis**, **game AI**, and **browser extensions**. Rather than staying in one layer, I've chosen to do the whole thing — from defining the problem to shipping something people actually use.",
+    "I started with two gold prizes at undergraduate AI contests in 2022, then handled security and systems monitoring at the Defense Integrated Data Center during military service. Since returning in 2026 I've gone through KAIST Madcamp, a term as president of AID, and Kakao Tech Campus, and I'm now waiting for the final results of the 5th Inter-University Deep Learning Challenge 2026.",
+  ],
+  skills: about.skills,
+};
+
+export const experienceEn: Experience[] = [
+  {
+    title: "Kakao Tech Campus, 4th cohort · IRYA", org: "Infrastructure · Backend", range: "May 2026 – present", now: true, link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
+    bullets: ["AI mock video-interview service. Self-hosted LiveKit, Caddy with automatic HTTPS, deployment pipeline."],
+  },
+  {
+    title: "AID — Pusan National University AI Club", org: "President", range: "Mar 2026 – Aug 2026", link: "https://github.com/PNU-AID",
+    bullets: [
+      "40+ members. Ran seminars (frequent presenter), a research-lab visit, and the homecoming event.",
+      "Built the official website with a competition auto-grading and leaderboard system (Django, PostgreSQL, Docker).",
+    ],
+  },
+  {
+    title: "KAIST Madcamp", org: "4 projects in 4 weeks", range: "Jan 2026 – Feb 2026",
+    bullets: [
+      "CallCops — designed and trained a real-time audio watermarking model for 8 kHz telephony",
+      "Roomie frontend, KaHook! (Three.js party game), Momento (React Native + NestJS)",
+    ],
+  },
+  { title: "Republic of Korea Army · Defense Integrated Data Center (DIDC)", org: "Security & systems monitoring operator", range: "Mar 2024 – Sep 2025" },
+  {
+    title: "\"Deep Learning from Scratch\" study group", org: "Organizer · AID", range: "Mar 2023 – May 2023", link: "https://github.com/Deep-Learning-from-Scratch-1",
+    bullets: ["Organized a bi-weekly study group and published chapter notes on my blog (→ Notes)"],
+  },
+  { title: "Pusan National University, Computer Science and Engineering", org: "B.S. · 3rd year", range: "Mar 2022 – present" },
+];
+
+export const awardsEn: Award[] = [
+  { year: "2026", name: "3rd Astronomy & Space AI Competition", org: "KASI · KAIST", result: "5th place", link: "https://kaist-kasiai.elice.io/" },
+  { year: "2026", name: "DIVE 2026 — Busan Facilities Corp. × Wheelchair track", org: "Busan Metropolitan City · Busan Technopark", result: "3rd · President's Award", link: "https://www.dxchallenge.co.kr/dive-2026" },
+  { year: "2026", name: "AI TOP 100 (Campus)", org: "Kakao Impact · Brian Impact", result: "Finalist (top 100)", link: "https://www.etnews.com/20260406000039" },
+  { year: "2026", name: "Reading Debate Competition — AI Feeds on Humans", org: "Pusan National University", result: "1st · President's Award", soft: true },
+  { year: "2026", name: "AID Rummikub Agent Competition", org: "AID", result: "Grand Prize" },
+  { year: "2024", name: "23rd Military Literature Award, poetry", org: "Ministry of National Defense", result: "Honorable Mention", soft: true },
+  { year: "2023", name: "1st Konkuk University Hackathon", org: "Konkuk Univ. SW-centered University Project", result: "Excellence Award", link: "https://github.com/Hackaton-Warriors/2023-Konkuk-Univ-HACKATON" },
+  { year: "2023", name: "PNU CodeRace (Beginner)", org: "Dept. of CSE, PNU", result: "Silver", link: "https://www.acmicpc.net/contest/view/994" },
+  { year: "2022", name: "PNU AI Landmark Classification · AI Art-Generation", org: "Dept. of CSE, PNU", result: "Gold ×2" },
+  { year: "2022", name: "Busan Coding Contest", org: "Tongmyong Univ. SW-centered University Project", result: "Bronze" },
+  { year: "2019", name: "1st AI-based Youth Camp", org: "Busan Office of Education", result: "Grand Prize" },
+];
+
+export const certificationsEn = ["PCCE Lv.3", "Land Radio Telecommunication Operator", "UAV Pilot (Class 4)"];
+export const beyondEn = ["📡 HAM 6K5EHL", "NOAA satellite reception", "Hiking", "Drones", "Car repair"];
+
+export function content(lang: Lang) {
+  return lang === "en"
+    ? { site: siteEn, hero: heroEn, about: aboutEn, experience: experienceEn, awards: awardsEn, certifications: certificationsEn, beyond: beyondEn }
+    : { site, hero, about, experience, awards, certifications, beyond };
+}

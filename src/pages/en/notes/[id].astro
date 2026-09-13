@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import NoteDetail from "../../views/NoteDetail.astro";
+import NoteDetail from "../../../views/NoteDetail.astro";
 export async function getStaticPaths() {
   const all = await getCollection("notes", ({ data }) => !data.draft);
   return all.map((n) => ({ params: { id: n.id }, props: { n } }));
 }
 const { n } = Astro.props;
 ---
-<NoteDetail lang="ko" n={n} />
+<NoteDetail lang="en" n={n} />

@@ -1,0 +1,20 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { prefix, ui, type Lang } from "../i18n";
+interface Props { lang: Lang; n: CollectionEntry<"notes"> }
+const { lang, n } = Astro.props;
+const t = ui[lang];
+const { Content } = await render(n);
+const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, ".");
+---
+<Base title={n.data.title} description={n.data.description} current="notes" math={true} lang={lang}>
+  <article class="article">
+    <a class="back" href={`${prefix(lang)}/notes`}>{t.backNotes}</a>
+    <div class="eyebrow">{fmt(n.data.date)}{n.data.tags.length > 0 && ` · ${n.data.tags.join(" · ")}`}</div>
+    <h1>{n.data.title}</h1>
+    {lang === "en" && <p class="lede">{t.notesEnOnly}</p>}
+    <div class="prose"><Content /></div>
+  </article>
+</Base>

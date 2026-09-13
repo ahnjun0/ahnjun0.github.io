@@ -1,20 +1,29 @@
 ---
 import "../styles/global.css";
-import { site } from "../config";
-interface Props { title?: string; description?: string; current?: string; math?: boolean; }
+import { content } from "../config";
+import { langFromUrl, prefix, switchPath, ui, type Lang } from "../i18n";
+interface Props { title?: string; description?: string; current?: string; math?: boolean; lang?: Lang; }
+const lang: Lang = Astro.props.lang ?? langFromUrl(Astro.url);
+const { site } = content(lang);
+const t = ui[lang];
 const { title, description = site.description, current, math = false } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
+const p = prefix(lang);
 const nav = [
-  { href: "/#about", label: "About", key: "about" },
-  { href: "/projects", label: "Projects", key: "projects" },
-  { href: "/#experience", label: "Experience", key: "experience" },
-  { href: "/#awards", label: "Awards", key: "awards" },
-  { href: "/notes", label: "Notes", key: "notes" },
-  { href: "/#contact", label: "Contact", key: "contact" },
+  { href: `${p}/#about`, label: t.nav.about, key: "about" },
+  { href: `${p}/projects`, label: t.nav.projects, key: "projects" },
+  { href: `${p}/#experience`, label: t.nav.experience, key: "experience" },
+  { href: `${p}/#awards`, label: t.nav.awards, key: "awards" },
+  { href: `${p}/notes`, label: t.nav.notes, key: "notes" },
+  { href: `${p}/#contact`, label: t.nav.contact, key: "contact" },
 ];
+const other: Lang = lang === "ko" ? "en" : "ko";
+const otherHref = switchPath(Astro.url.pathname, other);
+const koHref = switchPath(Astro.url.pathname, "ko");
+const enHref = switchPath(Astro.url.pathname, "en");
 ---
 <!doctype html>
-<html lang="ko">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,19 +34,37 @@ const nav = [
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
+    <meta property="og:locale" content={lang === "ko" ? "ko_KR" : "en_US"} />
+    <link rel="alternate" hreflang="ko" href={new URL(koHref, Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(enHref, Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
+    {math && <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />}
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-    {math && <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <script is:inline>
+      // 저장된 언어 선택이 현재 경로와 다르면 이동 (첫 방문은 그대로)
+      (function(){try{
+        var want=localStorage.getItem('lang'); if(!want) return;
+        var isEn=location.pathname==='/en'||location.pathname.indexOf('/en/')===0;
+        if(want==='en'&&!isEn){location.replace('/en'+(location.pathname==='/'?'/':location.pathname)+location.hash);}
+        else if(want==='ko'&&isEn){location.replace((location.pathname.replace(/^\/en(?=\/|$)/,'')||'/')+location.hash);}
+      }catch(e){}})();
+    </script>
   </head>
   <body>
-    <nav class="nav" aria-label="주요 메뉴">
+    <nav class="nav" aria-label={lang === "ko" ? "주요 메뉴" : "Main navigation"}>
       <div class="wrap">
-        {nav.map((n) => <a href={n.href} aria-current={current === n.key ? "page" : undefined}>{n.label}</a>)}
+        <div class="links">
+          {nav.map((n) => <a href={n.href} aria-current={current === n.key ? "page" : undefined}>{n.label}</a>)}
+        </div>
+        <div class="lang" role="group" aria-label="Language">
+          <a href={koHref} data-lang="ko" aria-current={lang === "ko" ? "true" : undefined}>KO</a>
+          <a href={enHref} data-lang="en" aria-current={lang === "en" ? "true" : undefined}>EN</a>
+        </div>
       </div>
     </nav>
     <slot />
@@ -47,5 +74,10 @@ const nav = [
         <span class="mono">73</span>
       </footer>
     </div>
+    <script>
+      document.querySelectorAll<HTMLAnchorElement>(".lang a").forEach((a) =>
+        a.addEventListener("click", () => { try { localStorage.setItem("lang", a.dataset.lang!); } catch {} })
+      );
+    </script>
   </body>
 </html>

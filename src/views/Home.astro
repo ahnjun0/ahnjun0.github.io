@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { content } from "../config";
+import { publicRepoCount } from "../lib/github";
+import { prefix, ui, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const { site, about, experience, awards, certifications, beyond } = content(lang);
+const t = ui[lang];
+const coll = lang === "en" ? "projectsEn" : "projects";
+const all = await getCollection(coll, ({ data }) => !data.draft);
+const featured = all.filter((p) => p.data.featured).sort((a, b) => a.data.featured! - b.data.featured!);
+const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+const repoCount = await publicRepoCount("ahnjun0");
+---
+<Base lang={lang}>
+  <Hero lang={lang} />
+  <div class="wrap">
+    <Section id="about" title={t.sections.about}>
+      {about.paragraphs.map((p) => <p class="ap" set:html={md(p)} />)}
+      <div class="tags" style="margin-top:22px">{about.skills.map((s) => <span>{s}</span>)}</div>
+    </Section>
+
+    <Section id="projects" title={t.sections.projects} sub={t.projectsSub(featured.length, all.length)}>
+      <div class="cards">{featured.map((p, i) => <ProjectCard project={p} index={i} lang={lang} />)}</div>
+      <a class="more" href={`${prefix(lang)}/projects`}>{t.allProjects}</a>
+    </Section>
+
+    <Section id="experience" title={t.sections.experience}>
+      <div class="tl">
+        {experience.map((e) => (
+          <div class:list={["it", { now: e.now }]}>
+            <div class="hd"><span class="t">{e.link ? <a href={e.link} target="_blank" rel="noopener" class="tl-link">{e.title} ↗</a> : e.title}</span><span class="mono">{e.range}</span></div>
+            <div class="o">{e.org}</div>
+            {e.bullets && <ul>{e.bullets.map((b) => <li>{b}</li>)}</ul>}
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <Section id="awards" title={t.sections.awards} sub={t.awardsSub(awards.length)}>
+      <div class="aw">
+        {awards.map((a) => {
+          const Tag = a.link ? "a" : "div";
+          return (
+            <Tag class:list={["r", { soft: a.soft }]} href={a.link} target={a.link ? "_blank" : undefined} rel={a.link ? "noopener" : undefined}>
+              <span class="y">{a.year}</span>
+              <span>{a.name}<span class="o">{a.org}</span></span>
+              <span class="res">{a.result}</span>
+            </Tag>
+          );
+        })}
+      </div>
+      <div class="tags" style="margin-top:28px">{certifications.map((c) => <span>{c}</span>)}{beyond.map((b) => <span>{b}</span>)}</div>
+    </Section>
+
+    <Section id="contact" title={t.sections.contact}>
+      <p class="cl">{t.contactLead}</p>
+      <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
+      <p class="cs" set:html={t.contactSub(repoCount).replace("@ahnjun0", `<a href="${site.github}">@ahnjun0</a>`).replace("solved.ac ahnjun0", `solved.ac <a href="${site.solvedac}">ahnjun0</a>`)} />
+    </Section>
+  </div>
+</Base>
+<style>
+  .ap { margin: 0 0 16px; color: var(--ink2); font-size: 17px; max-width: 60ch; }
+  .ap :global(b) { color: var(--ink); font-weight: 600; }
+  .cl { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 10px; }
+  .mail { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+  .cs { color: var(--ink2); margin: 14px 0 0; font-size: 15px; }
+  .cs :global(a) { border-bottom: 1px solid var(--line); }
+  .tl-link:hover { color: var(--accent); }
+</style>

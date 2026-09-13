@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { prefix, ui, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, ".");
+---
+<Base title={t.nav.notes} current="notes" lang={lang}>
+  <div class="wrap page">
+    <h1>{t.nav.notes} <small>{notes.length}</small></h1>
+    <p class="intro">{t.notesIntro}</p>
+    <div class="list">
+      {notes.map((n) => (
+        <a href={`${prefix(lang)}/notes/${n.id}`}>
+          <span class="ld">{fmt(n.data.date)}</span>
+          <span><span class="lt">{n.data.title}</span>{n.data.description && <span class="ls">{n.data.description}</span>}</span>
+          <span class="lr">{n.data.tags.slice(0, 2).join(" · ")}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>
+<style>
+  .page { padding-block: 64px 96px; }
+  h1 { font-size: clamp(32px, 4.4vw, 44px); font-weight: 800; letter-spacing: -0.035em; margin: 0 0 10px; }
+  h1 small { font-family: var(--mono); font-size: 14px; font-weight: 400; color: var(--mute); margin-left: 8px; }
+  .intro { color: var(--ink2); margin: 0 0 28px; }
+</style>

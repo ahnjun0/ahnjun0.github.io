@@ -1,0 +1,30 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { repoMeta } from "../lib/github";
+import { prefix, ui, type Lang } from "../i18n";
+interface Props { lang: Lang; p: CollectionEntry<"projects"> | CollectionEntry<"projectsEn"> }
+const { lang, p } = Astro.props;
+const t = ui[lang];
+const d = p.data;
+const { Content } = await render(p as any);
+const meta = d.repo ? await repoMeta(d.repo) : null;
+const repoOk = !!(d.repo && meta);
+---
+<Base title={d.title} description={d.summary} current="projects" lang={lang}>
+  <article class="article">
+    <a class="back" href={`${prefix(lang)}/projects`}>{t.backProjects}</a>
+    <div class="eyebrow">{d.category} · {d.period}</div>
+    <h1>{d.title}</h1>
+    <p class="lede">{d.summary}</p>
+    <div class="facts">
+      {d.role && <div><b>{t.facts.role}</b>{d.role}</div>}
+      {d.result && <div><b>{t.facts.result}</b>{d.result}</div>}
+      <div><b>{t.facts.stack}</b>{d.tags.join(" · ")}</div>
+      {(repoOk || d.link) && <div><b>{t.facts.links}</b>{repoOk && <a href={d.repo} target="_blank" rel="noopener">{t.facts.repo}</a>}{repoOk && d.link && " · "}{d.link && <a href={d.link} target="_blank" rel="noopener">{t.facts.site}</a>}</div>}
+      {repoOk && meta && <div><b>{t.facts.github}</b>{meta.language && `${meta.language} · `}{meta.stars > 0 && `★ ${meta.stars} · `}{t.facts.lastCommit} {meta.pushedAt}</div>}
+    </div>
+    <div class="prose"><Content /></div>
+  </article>
+</Base>

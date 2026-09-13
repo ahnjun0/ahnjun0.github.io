@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import ProjectDetail from "../../views/ProjectDetail.astro";
+import ProjectDetail from "../../../views/ProjectDetail.astro";
 export async function getStaticPaths() {
-  const all = await getCollection("projects", ({ data }) => !data.draft);
+  const all = await getCollection("projectsEn", ({ data }) => !data.draft);
   return all.map((p) => ({ params: { id: p.id }, props: { p } }));
 }
 const { p } = Astro.props;
 ---
-<ProjectDetail lang="ko" p={p} />
+<ProjectDetail lang="en" p={p} />

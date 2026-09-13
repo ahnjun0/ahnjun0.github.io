@@ -1,9 +1,7 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-const projects = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
-  schema: z.object({
+const projectSchema = z.object({
     title: z.string(),
     summary: z.string(),            // 카드/목록 한 줄
     period: z.string(),             // "2026.08 – 09"
@@ -16,8 +14,10 @@ const projects = defineCollection({
     repo: z.string().url().optional(),
     link: z.string().url().optional(),
     draft: z.boolean().default(false),
-  }),
-});
+  });
+
+const projects = defineCollection({ loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }), schema: projectSchema });
+const projectsEn = defineCollection({ loader: glob({ pattern: "**/*.md", base: "./src/content/projects-en" }), schema: projectSchema });
 
 const notes = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/notes" }),
@@ -30,4 +30,4 @@ const notes = defineCollection({
   }),
 });
 
-export const collections = { projects, notes };
+export const collections = { projects, projectsEn, notes };
