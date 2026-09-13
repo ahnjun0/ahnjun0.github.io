@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { site, about, experience, awards, certifications, beyond } from "../config";
+
+const all = await getCollection("projects", ({ data }) => !data.draft);
+const featured = all.filter((p) => p.data.featured).sort((a, b) => a.data.featured! - b.data.featured!);
+const md = (s: string) => s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+---
+<Base>
+  <Hero />
+  <div class="wrap">
+    <Section id="about" title="About">
+      {about.paragraphs.map((p) => <p class="ap" set:html={md(p)} />)}
+      <div class="tags" style="margin-top:22px">{about.skills.map((s) => <span>{s}</span>)}</div>
+    </Section>
+
+    <Section id="projects" title="Projects" sub={`대표 ${featured.length}개 · 전체 ${all.length}개`}>
+      <div class="cards">{featured.map((p, i) => <ProjectCard project={p} index={i} />)}</div>
+      <a class="more" href="/projects">전체 프로젝트 보기 →</a>
+    </Section>
+
+    <Section id="experience" title="Experience">
+      <div class="tl">
+        {experience.map((e) => (
+          <div class:list={["it", { now: e.now }]}>
+            <div class="hd"><span class="t">{e.title}</span><span class="mono">{e.range}</span></div>
+            <div class="o">{e.org}</div>
+            {e.bullets && <ul>{e.bullets.map((b) => <li>{b}</li>)}</ul>}
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <Section id="awards" title="Awards" sub={`${awards.length}건`}>
+      <div class="aw">
+        {awards.map((a) => {
+          const Tag = a.link ? "a" : "div";
+          return (
+            <Tag class:list={["r", { soft: a.soft }]} href={a.link} target={a.link ? "_blank" : undefined} rel={a.link ? "noopener" : undefined}>
+              <span class="y">{a.year}</span>
+              <span>{a.name}<span class="o">{a.org}</span></span>
+              <span class="res">{a.result}</span>
+            </Tag>
+          );
+        })}
+      </div>
+      <div class="tags" style="margin-top:28px">{certifications.map((c) => <span>{c}</span>)}{beyond.map((b) => <span>{b}</span>)}</div>
+    </Section>
+
+    <Section id="contact" title="Contact">
+      <p class="cl">이야기 나누고 싶다면,</p>
+      <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
+      <p class="cs">GitHub <a href={site.github}>@ahnjun0</a> · solved.ac <a href={site.solvedac}>ahnjun0</a> · 아마추어무선 {site.callsign}</p>
+    </Section>
+  </div>
+</Base>
+<style>
+  .ap { margin: 0 0 16px; color: var(--ink2); font-size: 17px; max-width: 60ch; }
+  .ap :global(b) { color: var(--ink); font-weight: 600; }
+  .cl { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 10px; }
+  .mail { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+  .cs { color: var(--ink2); margin: 14px 0 0; font-size: 15px; }
+  .cs a { border-bottom: 1px solid var(--line); }
+</style>

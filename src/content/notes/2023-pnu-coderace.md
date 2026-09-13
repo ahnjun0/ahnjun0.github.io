@@ -1,0 +1,210 @@
+---
+title: "2023 부산대학교 CodeRace 회고 + Python 문제풀이(백준 28014, 28015, 28016, 28017)"
+description: "2023 부산대 CodeRace Beginner 은상 회고와 백준 28014~28017 파이썬 풀이"
+date: 2023-07-20
+tags: ["Contest", "PNU"]
+---
+
+2023년 5월 6일에 개최된 부산대학교 Coding Contest인 CodeRace에 참여하고 나서, 내 문제풀이와 개인적인 소회를 적었습니다. 2022년 작년 대회에 이어, 올해 두 번째로 참여하는 대회인데 가면 갈수록 발전하는 대회인 것 같아 개인적으로 기분이 좋습니다.
+
+[오픈 Contest in 백준 (링크)](https://www.acmicpc.net/contest/view/994)
+
+결과부터 말하면, **Beginner** 대회에서 **은상(2등상)**을 수상하기'는' 했습니다.
+
+![수상자 명단](/images/notes/2023/coderace/award.jpg)
+
+*수상자 명단*
+
+사실, 수상을 했음에도, 대회 끝나고 이 내용을 바로 올리지 않은 이유는, (미루다 미루다 2개월이 훌쩍 지나서야 올린 이유는) 솔직히 말하자면 '과연 이걸 올려야 되나?' 이런 거 괜히 올리면 *'부산대 수준 겨우 이거?'*이런 소리 듣는 거 아냐? 라는 생각을 정말 많이 했었습니다. 뭐 그래도 좋은 게 좋은 거 아닐까요...? ㅎㅎ...
+
+---
+
+## 1번 문제(28014) : 첨탑 밀어서 부수기
+
+- Solved.ac 난이도 : Bronze 3
+- 알고리즘 : 구현
+- [문제 보러가기](https://www.acmicpc.net/problem/28014)
+
+1번 문제답게, 문제의 난이도는 그렇게 어렵지 않았습니다.
+
+'밀려 넘어지는 첨탑의 높이가 바로 그다음 첨탑의 높이보다 클 때만 그다음 첨탑도 밀려 넘어진다.'라는 문장이 문제 전부를 관통하는 주제라고 생각했습니다. 즉, 여러 숫자가 순서대로 나열되어 있을 때, N번째 첨탑 <= N+1번째 첨탑일 때 밀어주는 횟수를 더하면 됩니다.
+
+```python
+import sys
+input = lambda : sys.stdin.readline()
+
+N = int(input())
+
+top = list(map(int, input().split()))
+push = 1
+
+for i in range(N-1):
+    if top[i] <= top[i+1]:
+        push += 1
+
+print(push)
+```
+
+밀어주는 횟수를 'push' 변수에 저장하고, list를 순회하며 'N번째 첨탑 <= N+1번째 첨탑' 조건을 만족하는 경우에, push 변수에 1을 더하는 것으로 하였습니다. 최초에 첨탑을 1회 밀어주어야 하므로, push는 1로 초기화하였습니다.
+
+시험장에서는 가뿐히 풀고 넘어갈 줄 알았는데, '이상'과 '초과'를 혼동하는 바람에 아주 쉽게 넘어가지는 못했습니다. (문제를 꼼꼼히 읽는 습관을 들여야겠다...)
+
+## 2번 문제(28015) : 영역 색칠
+
+- Solved.ac 난이도 : Silver 2
+- 알고리즘 : 구현
+- [문제 보러가기](https://www.acmicpc.net/problem/28015)
+
+2번 문제는, 간단하지만 조금 생각을 하게 만드는 문제였습니다.
+
+'붓질 한 번에 칠할 수 있는 길이의 제한은 없고, 덧칠이 가능하다.'는 문제의 제한조건 때문에, 여러 단계로 나누어서 정답을 작성할 수밖에 없었습니다.
+
+```python
+
+import sys
+input = lambda : sys.stdin.readline()
+
+N, M = map(int, input().split())
+
+listM = []
+cnt = 0
+
+brushOne = False
+brushTwo = False
+
+for _ in range(N):
+    listM.append(list(map(int, input().split())))
+  
+for i in range(len(listM)):
+    while True:
+        for j in range(len(listM[i])):
+
+            if listM[i][j] == 0 and (brushOne == True or brushTwo == True):
+                brushOne = False
+                brushTwo = False
+  
+            if listM[i][j] == 1 and brushOne == False and brushTwo == False:
+                brushOne = True
+                listM[i][j] -= 1
+                cnt += 1
+  
+            elif listM[i][j] == 2 and brushOne == False and brushTwo == False:
+                brushTwo = True
+                listM[i][j] -= 2
+                cnt += 1
+    
+            elif listM[i][j] == 1 and brushOne == True:
+                listM[i][j] -= 1
+    
+            elif listM[i][j] == 2 and brushTwo == True:
+                listM[i][j] -= 2
+    
+        brushOne = False
+        brushTwo = False
+  
+        if sum(listM[i]) == 0:
+            break
+  
+print(cnt)
+```
+
+우선, 1번 색(brushOne)과 2번 색(brushTwo)를 설정하고, 1번 색과 2번 색 붓을 차례로 바꿔가는 조건을 설정하며 문제를 해결하는 식으로 코드를 작성하였습니다.
+
+정신없이 문제를 풀고, 3번 BFS보다 4번 DP가 뭔가 더 쉬워 보여(실제 solved.ac 티어에서도...) 그 문제를 먼저 도전했었는데, 문제를 완전 잘못 이해해 4번 문제 제출 직전에 시간이 끝나버리는 바람에, 1/2번 문제 2솔로 끝나고 난 후 아... 수상은 글렀구나 싶었는데 2등상이라니 좀 놀래긴 했습니다. (1등하신 분이 3솔이었나 4솔이었나... 1/2학년 대회+비 많이 오는 날 효과가 크지 않았나 싶네요)
+
+## 3번 문제(28016) : 경품 추첨
+
+- Solved.ac 난이도 : Gold 2
+- 알고리즘 : BFS, 확률론
+- [문제 보러가기](https://www.acmicpc.net/problem/28016)
+
+3번 문제는... 개인적으로 별로 좋아하지 않는 확률를 이용하는 문제입니다.
+대회 때는 미처 풀지 못했지만, 대회 끝나고 저는 이렇게 풀었습니다.
+
+```python
+
+import sys, copy
+from fractions import Fraction
+input = lambda : sys.stdin.readline()
+
+N, M = map(int, input().split())
+plate = []
+for _ in range(N):
+    plate.append(list(map(Fraction, input().split())))
+  
+percent = [Fraction(0)] * M
+percent_next = [Fraction(0)] * M
+first_ball = plate[0].index(2)
+percent[first_ball] = Fraction(1)
+percent_next[first_ball] = Fraction(1)
+
+for i in range(N-1):
+    for j in range(1, M-1):
+        if plate[i+1][j] == Fraction(1):
+            if plate[i+1][j-1] != Fraction(1):
+                percent_next[j-1] += percent[j] * Fraction(0.5)
+              
+            if plate[i+1][j+1] != Fraction(1):
+                percent_next[j+1] += percent[j] * Fraction(0.5)
+          
+            percent_next[j] = Fraction(0)
+          
+            if plate[i][j-1] == Fraction(1):
+                percent_next[j-1] = Fraction(0)
+            if plate[i][j+1] == Fraction(1):
+                percent_next[j+1] = Fraction(0)
+  
+    percent = copy.deepcopy(percent_next)
+    # print("percent : ", *percent)
+
+
+result = Fraction(0)
+index = -1
+
+for i, large_num in enumerate(percent):
+    if large_num > result:
+        result = large_num
+        index = i
+      
+
+print(index)
+```
+
+정확한 소수점 계산을 위해, 파이썬의 fractions 모듈을 이용하여 모든 소수를 분수로 바꾸어 풀었습니다. 확률에 1/2씩을 곱하면서 단순히 경우를 나누게 되면, 의외로 쉽게 풀리는 문제였습니다.
+
+아마 C나 C++ 같은 언어에서는, 저렇게 작은 수의 연산을 처리하기 굉장히 힘들어, Solved.ac 난이도가 이렇게 높게 측정된 것이 아닌가 싶습니다. "파이썬이라서 그나마 쉬운 문제"가 아니었을까 싶네요.
+
+물론 다른 분들의 굉장히 신선하고, 독창적인 풀이 방법도 발견할 수 있었습니다. 그렇게 문제를 푸시는 분들에게 늘 리스펙...
+
+## 4번 문제(28017) : 게임을 클리어하자
+
+- Solved.ac 난이도 : Gold 5
+- 알고리즘 : DP
+- [문제 보러가기](https://www.acmicpc.net/problem/28017)
+
+이번 문제는 전형적인 타뷸레이션 DP 문제입니다.
+
+'3번 문제 난이도 > 4번 문제 난이도'인 이유가, 아마도 Beginner 난이도와 Advanced 난이도가 4번 문제를 공유하기 때문으로 보이는데, 실제로 풀 때는 4번이 사실 조금 더 쉽게 다가오긴 했습니다. (난이도 순서대로 정렬되어 있다는 점이 아니라는 점에 유의!)
+
+```python
+
+import sys
+input = lambda : sys.stdin.readline()
+
+N, M = map(int, input().split())
+arr = []
+
+for _ in range(N):
+    arr.append(list(map(int, input().split())))
+
+for i in range(N-1):
+    for j in range(M):
+        min_value = min(arr[i][:j] + arr[i][j+1:])
+        arr[i+1][j] += min_value
+      
+print(min(arr[-1]))
+```
+
+("바로 이전 회차의 무기는 사용하지 않기"에서 혼동이 좀 많이 오긴 했지만,) 직전 회차의 무기가 아닌 다른 무기 중에 최소 시간이 걸린 무기를 다음 회차 해당 무기에 더하는 방식으로 해당 DP 문제를 해결하였습니다.
+
+처음에 대회장에서, 문제를 잘못 읽고 "바로 이전 회차"가 아닌 "모든 이전 회차"로 잘못 판단해 수많은 실패와 함께 타임오버되긴 했지만, 충분히 풀 만한 문제가 아니었나 싶습니다.

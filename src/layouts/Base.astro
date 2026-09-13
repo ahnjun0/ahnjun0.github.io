@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import { site } from "../config";
+interface Props { title?: string; description?: string; current?: string; math?: boolean; }
+const { title, description = site.description, current, math = false } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
+const nav = [
+  { href: "/#about", label: "About", key: "about" },
+  { href: "/projects", label: "Projects", key: "projects" },
+  { href: "/#experience", label: "Experience", key: "experience" },
+  { href: "/#awards", label: "Awards", key: "awards" },
+  { href: "/notes", label: "Notes", key: "notes" },
+  { href: "/#contact", label: "Contact", key: "contact" },
+];
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    {math && <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+  </head>
+  <body>
+    <nav class="nav" aria-label="주요 메뉴">
+      <div class="wrap">
+        {nav.map((n) => <a href={n.href} aria-current={current === n.key ? "page" : undefined}>{n.label}</a>)}
+      </div>
+    </nav>
+    <slot />
+    <div class="wrap">
+      <footer class="site">
+        <span>© {new Date().getFullYear()} {site.nameEn}</span>
+        <span class="mono">73</span>
+      </footer>
+    </div>
+  </body>
+</html>

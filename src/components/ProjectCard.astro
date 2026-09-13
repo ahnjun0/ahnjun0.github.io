@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from "astro:content";
+interface Props { project: CollectionEntry<"projects">; index?: number; }
+const { project, index } = Astro.props;
+const d = project.data;
+const n = index !== undefined ? String(index + 1).padStart(2, "0") + " · " : "";
+---
+<a class="card" href={`/projects/${project.id}`}>
+  <span class="n">{n}{d.period}</span>
+  <h3>{d.title}</h3>
+  <p>{d.summary}</p>
+  <div class="meta">
+    {d.result && <span class="r">{d.result}</span>}
+    <span class="t">{d.tags.join(" · ")}</span>
+  </div>
+  <span class="arrow" aria-hidden="true">↗</span>
+</a>

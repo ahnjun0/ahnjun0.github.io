@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+export async function getStaticPaths() {
+  const all = await getCollection("notes", ({ data }) => !data.draft);
+  return all.map((n) => ({ params: { id: n.id }, props: { n } }));
+}
+const { n } = Astro.props;
+const { Content } = await render(n);
+const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, ".");
+---
+<Base title={n.data.title} description={n.data.description} current="notes" math={true}>
+  <article class="article">
+    <a class="back" href="/notes">← Notes</a>
+    <div class="eyebrow">{fmt(n.data.date)}{n.data.tags.length > 0 && ` · ${n.data.tags.join(" · ")}`}</div>
+    <h1>{n.data.title}</h1>
+    <div class="prose"><Content /></div>
+  </article>
+</Base>
