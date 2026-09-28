@@ -1,5 +1,5 @@
 ---
-title: "AID Rummikub — A learned Rummikub agent"
+title: "AID AI Challenge — A learned Rummikub agent"
 summary: "Beat a greedy ILP baseline in two-player Rummikub (104 tiles). Search is the teacher; the final move choice is the network's."
 period: "Jul – Aug 2026"
 sortDate: "2026-08-29"

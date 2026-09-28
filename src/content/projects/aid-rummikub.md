@@ -1,5 +1,5 @@
 ---
-title: "AID Rummikub — 학습된 루미큐브 에이전트"
+title: "AID AI Challenge — 학습된 루미큐브 에이전트"
 summary: "2인 루미큐브(104타일)에서 그리디 ILP 베이스라인을 이기는 에이전트. 탐색은 선생, 최종 수 선택은 네트워크가."
 period: "2026.07 – 08"
 sortDate: "2026-08-29"
