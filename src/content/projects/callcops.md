@@ -24,6 +24,8 @@ repo: "https://github.com/ahnjun0/callcops"
 
 목표 사양: 지연 < 200ms, PESQ ≥ 4.0, G.711/G.729 압축 후 BER < 5%. 몰입캠프 4주 중 한 주 프로젝트로 프로토타입과 미리보기 웹(`callcops-preview`)까지 만들었습니다.
 
+팀 원본 저장소는 [Namjoong0130/CALLCOPS](https://github.com/Namjoong0130/CALLCOPS)에 있습니다.
+
 ## 배운 점
 
 - 코덱을 "통과시킨 뒤 평가"하는 게 아니라 "학습 안에 넣어야" 살아남습니다.

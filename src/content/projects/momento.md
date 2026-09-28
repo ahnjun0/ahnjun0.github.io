@@ -6,7 +6,7 @@ sortDate: "2026-01-15"
 category: "Web/App"
 role: "팀 (KAIST 몰입캠프 1주차)"
 tags: ["React Native", "NestJS", "PostgreSQL", "Firebase"]
-repo: "https://github.com/ahnjun0/madcamp_2025W_W1_planner"
+repo: "https://github.com/hjxarchive/madcamp_2025W_W1_planner"
 ---
 
 계획을 좋아하지만 어떻게 세워야 할지 모르거나, 세운 계획을 실천하지 못했던 사람을 위한 플래너입니다. Galaxy S10e·S22+에서 검증한 APK를 배포했습니다.

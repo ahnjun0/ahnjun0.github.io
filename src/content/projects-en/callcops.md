@@ -24,6 +24,8 @@ A system that inserts an **inaudible digital signature** into call audio in real
 
 Target spec: latency < 200 ms, PESQ ≥ 4.0, BER < 5% after G.711/G.729. Built as one week's project of the four-week Madcamp, with a prototype and a preview web app (`callcops-preview`).
 
+The team repository is [Namjoong0130/CALLCOPS](https://github.com/Namjoong0130/CALLCOPS).
+
 ## What I learned
 
 - You can't "evaluate after the codec" — the codec has to be *inside* training for the watermark to survive it.
