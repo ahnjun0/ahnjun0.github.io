@@ -6,7 +6,7 @@ const projectSchema = z.object({
     summary: z.string(),            // 카드/목록 한 줄
     period: z.string(),             // "2026.08 – 09"
     sortDate: z.string(),           // "2026-08-01" 정렬용
-    category: z.enum(["AI/ML", "Data", "Web/App", "Game AI", "Infra", "Product"]),
+    category: z.enum(["AI/ML", "Data", "Web/App", "Game AI", "Infra", "Product", "Hardware"]),
     role: z.string().optional(),    // "개인" | "팀 · 기획/분석"
     result: z.string().optional(),  // "트랙 3등 · 원장상"
     tags: z.array(z.string()).default([]),
