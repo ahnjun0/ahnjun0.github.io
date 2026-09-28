@@ -24,7 +24,7 @@ export const hero = {
 export const about = {
   paragraphs: [
     "**LLM 파인튜닝**부터 **공공데이터 분석**, **게임 AI**, **브라우저 확장**까지. 모델 한 층에 머무르기보다, 문제를 정의하는 일부터 배포해서 쓰이게 하는 일까지 전부 해보는 쪽을 택해 왔습니다.",
-    "2022년 학부 AI 대회 금상 두 개로 시작했고, 국방통합데이터센터에서 보안관제·체계관제를 맡았습니다. 2026년 복학 후 KAIST 몰입캠프, AID 회장, 카카오테크캠퍼스를 연달아 지나왔고, 지금은 제5회 대학 연합 딥러닝 챌린지 2026의 최종 결과를 기다리고 있습니다.",
+    "2022년 학부 AI 대회 금상 두 개로 시작했고, 국방통합데이터센터에서 보안관제·체계관제를 맡았습니다. 2026년 복학 후 KAIST 몰입캠프, AID 회장, 카카오테크캠퍼스를 연달아 지나왔고, 제5회 대학 연합 딥러닝 챌린지 2026에서는 개인전 3등상을 받았습니다.",
   ],
   skills: ["Python", "PyTorch", "LoRA / vLLM", "Django", "FastAPI", "TypeScript", "Docker", "LiveKit", "Chrome Extension"],
 };
@@ -63,6 +63,7 @@ export type Award = {
   year: string; name: string; org: string; result: string; soft?: boolean; link?: string;
 };
 export const awards: Award[] = [
+  { year: "2026", name: "제5회 대학 연합 딥러닝 챌린지 (DLC) 2026", org: "개인전", result: "3등상 · 7위", link: "https://github.com/ahnjun0/dlc2026-submission" },
   { year: "2026", name: "제3회 천문우주 AI 경진대회", org: "한국천문연구원 · KAIST", result: "5위", link: "https://kaist-kasiai.elice.io/" },
   { year: "2026", name: "DIVE 2026 부산시설공단×윌체어 트랙", org: "부산광역시 · 부산테크노파크", result: "3등 · 원장상", link: "https://www.dxchallenge.co.kr/dive-2026" },
   { year: "2026", name: "AI TOP 100 (CAMPUS)", org: "카카오임팩트 · 브라이언임팩트", result: "Finalist", link: "https://www.etnews.com/20260406000039" },
@@ -99,7 +100,7 @@ export const heroEn = {
 export const aboutEn = {
   paragraphs: [
     "From **LLM fine-tuning** to **public-data analysis**, **game AI**, and **browser extensions**. Rather than staying in one layer, I've chosen to do the whole thing — from defining the problem to shipping something people actually use.",
-    "I started with two gold prizes at undergraduate AI contests in 2022, then handled security and systems monitoring at the Defense Integrated Data Center during military service. Since returning in 2026 I've gone through KAIST Madcamp, a term as president of AID, and Kakao Tech Campus, and I'm now waiting for the final results of the 5th Inter-University Deep Learning Challenge 2026.",
+    "I started with two gold prizes at undergraduate AI contests in 2022, then handled security and systems monitoring at the Defense Integrated Data Center during military service. Since returning in 2026 I've gone through KAIST Madcamp, a term as president of AID, and Kakao Tech Campus, and took 3rd Prize (solo) at the 5th Inter-University Deep Learning Challenge 2026.",
   ],
   skills: about.skills,
 };
@@ -132,6 +133,7 @@ export const experienceEn: Experience[] = [
 ];
 
 export const awardsEn: Award[] = [
+  { year: "2026", name: "5th Inter-University Deep Learning Challenge (DLC) 2026", org: "Solo entry", result: "3rd Prize · 7th overall", link: "https://github.com/ahnjun0/dlc2026-submission" },
   { year: "2026", name: "3rd Astronomy & Space AI Competition", org: "KASI · KAIST", result: "5th place", link: "https://kaist-kasiai.elice.io/" },
   { year: "2026", name: "DIVE 2026 — Busan Facilities Corp. × Wheelchair track", org: "Busan Metropolitan City · Busan Technopark", result: "3rd · President's Award", link: "https://www.dxchallenge.co.kr/dive-2026" },
   { year: "2026", name: "AI TOP 100 (Campus)", org: "Kakao Impact · Brian Impact", result: "Finalist (top 100)", link: "https://www.etnews.com/20260406000039" },
