@@ -65,7 +65,7 @@ export type Award = {
 export const awards: Award[] = [
   { year: "2026", name: "제3회 천문우주 AI 경진대회", org: "한국천문연구원 · KAIST", result: "5위", link: "https://kaist-kasiai.elice.io/" },
   { year: "2026", name: "DIVE 2026 부산시설공단×윌체어 트랙", org: "부산광역시 · 부산테크노파크", result: "3등 · 원장상", link: "https://www.dxchallenge.co.kr/dive-2026" },
-  { year: "2026", name: "AI TOP 100 (CAMPUS)", org: "카카오임팩트 · 브라이언임팩트", result: "본선 100인", link: "https://www.etnews.com/20260406000039" },
+  { year: "2026", name: "AI TOP 100 (CAMPUS)", org: "카카오임팩트 · 브라이언임팩트", result: "Finalist", link: "https://www.etnews.com/20260406000039" },
   { year: "2026", name: "독서토론대회 『AI는 인간을 먹고 자란다』", org: "부산대학교 교양교육원", result: "대상 · 총장상", soft: true },
   { year: "2026", name: "AID Rummikub 에이전트 대회", org: "AID", result: "최우수상" },
   { year: "2024", name: "제23회 병영문학상 시 부문", org: "국방부", result: "입선", soft: true },
