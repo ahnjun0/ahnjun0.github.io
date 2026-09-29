@@ -51,7 +51,7 @@ export const experience: Experience[] = [
       "Roomie 프론트엔드, KaHook! (Three.js 파티 게임), Momento (React Native + NestJS)",
     ],
   },
-  { title: "대한민국 육군 · 국방통합데이터센터(DIDC)", org: "관제병 · 보안관제 · 체계관제", range: "2024.03 – 2025.09" },
+  { title: "대한민국 육군 · 국방통합데이터센터(DIDC)", org: "관제병 · 보안관제·체계관제 · SIEM 기반 보안 이벤트 모니터링 및 1차 분석", range: "2024.03 – 2025.09" },
   {
     title: "밑바닥부터 시작하는 딥러닝 스터디", org: "운영 · AID", range: "2023.03 – 2023.05", link: "https://github.com/Deep-Learning-from-Scratch-1",
     bullets: ["2주 1회 스터디 조직·운영, 챕터별 노트를 블로그에 기록 (→ Notes)"],
@@ -124,7 +124,7 @@ export const experienceEn: Experience[] = [
       "Roomie frontend, KaHook! (Three.js party game), Momento (React Native + NestJS)",
     ],
   },
-  { title: "Republic of Korea Army · Defense Integrated Data Center (DIDC)", org: "Security & systems monitoring operator", range: "Mar 2024 – Sep 2025" },
+  { title: "Republic of Korea Army · Defense Integrated Data Center (DIDC)", org: "Security & systems monitoring operator · SIEM-based security event monitoring and triage", range: "Mar 2024 – Sep 2025" },
   {
     title: "\"Deep Learning from Scratch\" study group", org: "Organizer · AID", range: "Mar 2023 – May 2023", link: "https://github.com/Deep-Learning-from-Scratch-1",
     bullets: ["Organized a bi-weekly study group and published chapter notes on my blog (→ Notes)"],
