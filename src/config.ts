@@ -63,6 +63,7 @@ export type Award = {
   year: string; name: string; org: string; result: string; soft?: boolean; link?: string;
 };
 export const awards: Award[] = [
+  { year: "2026", name: "2026 CSE TECH WEEK 자율 이동로봇 기반 Search & Rescue 해커톤", org: "부산대학교 정보컴퓨터공학부", result: "3등상 · 정보컴퓨터공학부장상" },
   { year: "2026", name: "제5회 대학 연합 딥러닝 챌린지 (DLC) 2026", org: "아주대학교 SW중심대학사업단 · AI융합교육원", result: "3등상 · 7위 (개인전)", link: "https://github.com/ahnjun0/dlc2026-submission" },
   { year: "2026", name: "제3회 천문우주 AI 경진대회", org: "한국천문연구원 · KAIST", result: "5위", link: "https://kaist-kasiai.elice.io/" },
   { year: "2026", name: "DIVE 2026 부산시설공단×윌체어 트랙", org: "부산광역시 · 부산테크노파크", result: "3등 · 원장상", link: "https://www.dxchallenge.co.kr/dive-2026" },
@@ -133,6 +134,7 @@ export const experienceEn: Experience[] = [
 ];
 
 export const awardsEn: Award[] = [
+  { year: "2026", name: "2026 CSE TECH WEEK Search & Rescue Hackathon (autonomous mobile robots)", org: "Dept. of CSE, Pusan National University", result: "3rd Prize · Dept. Head's Award" },
   { year: "2026", name: "5th Inter-University Deep Learning Challenge (DLC) 2026", org: "Ajou Univ. SW-centered University Project · AI Convergence Education Institute", result: "3rd Prize · 7th overall (solo)", link: "https://github.com/ahnjun0/dlc2026-submission" },
   { year: "2026", name: "3rd Astronomy & Space AI Competition", org: "KASI · KAIST", result: "5th place", link: "https://kaist-kasiai.elice.io/" },
   { year: "2026", name: "DIVE 2026 — Busan Facilities Corp. × Wheelchair track", org: "Busan Metropolitan City · Busan Technopark", result: "3rd · President's Award", link: "https://www.dxchallenge.co.kr/dive-2026" },

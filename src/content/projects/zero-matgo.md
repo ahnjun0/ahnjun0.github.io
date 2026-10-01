@@ -6,7 +6,7 @@ sortDate: "2026-01-08"
 category: "Game AI"
 role: "개인"
 tags: ["PyTorch", "MCTS", "Self-play", "AlphaZero"]
-featured: 3
+featured: 4
 ---
 
 ## 문제

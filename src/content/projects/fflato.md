@@ -7,7 +7,6 @@ category: "Product"
 role: "개인 · 배포 중"
 result: "배포 중"
 tags: ["Chrome Extension", "Manifest V3", "JavaScript"]
-featured: 4
 repo: "https://github.com/ahnjun0/fflato"
 ---
 

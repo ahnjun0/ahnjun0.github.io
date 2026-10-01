@@ -7,7 +7,6 @@ category: "Product"
 role: "Solo · in use"
 result: "In use"
 tags: ["Chrome Extension", "Manifest V3", "JavaScript"]
-featured: 4
 repo: "https://github.com/ahnjun0/fflato"
 ---
 
