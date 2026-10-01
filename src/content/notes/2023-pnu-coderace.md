@@ -5,9 +5,11 @@ date: 2023-07-20
 tags: ["Contest", "PNU"]
 ---
 
+> 백준 온라인 저지는 2026년 4월 28일 서비스를 종료했습니다. 이 글의 문제 링크는 걷어내고 번호만 남겼습니다.
+
 2023년 5월 6일에 개최된 부산대학교 Coding Contest인 CodeRace에 참여하고 나서, 내 문제풀이와 개인적인 소회를 적었습니다. 2022년 작년 대회에 이어, 올해 두 번째로 참여하는 대회인데 가면 갈수록 발전하는 대회인 것 같아 개인적으로 기분이 좋습니다.
 
-[오픈 Contest in 백준 (링크)](https://www.acmicpc.net/contest/view/994)
+오픈 Contest in 백준
 
 결과부터 말하면, **Beginner** 대회에서 **은상(2등상)**을 수상하기'는' 했습니다.
 
@@ -23,7 +25,7 @@ tags: ["Contest", "PNU"]
 
 - Solved.ac 난이도 : Bronze 3
 - 알고리즘 : 구현
-- [문제 보러가기](https://www.acmicpc.net/problem/28014)
+- 백준 28014번
 
 1번 문제답게, 문제의 난이도는 그렇게 어렵지 않았습니다.
 
@@ -53,7 +55,7 @@ print(push)
 
 - Solved.ac 난이도 : Silver 2
 - 알고리즘 : 구현
-- [문제 보러가기](https://www.acmicpc.net/problem/28015)
+- 백준 28015번
 
 2번 문제는, 간단하지만 조금 생각을 하게 만드는 문제였습니다.
 
@@ -116,7 +118,7 @@ print(cnt)
 
 - Solved.ac 난이도 : Gold 2
 - 알고리즘 : BFS, 확률론
-- [문제 보러가기](https://www.acmicpc.net/problem/28016)
+- 백준 28016번
 
 3번 문제는... 개인적으로 별로 좋아하지 않는 확률를 이용하는 문제입니다.
 대회 때는 미처 풀지 못했지만, 대회 끝나고 저는 이렇게 풀었습니다.
@@ -180,7 +182,7 @@ print(index)
 
 - Solved.ac 난이도 : Gold 5
 - 알고리즘 : DP
-- [문제 보러가기](https://www.acmicpc.net/problem/28017)
+- 백준 28017번
 
 이번 문제는 전형적인 타뷸레이션 DP 문제입니다.
 
