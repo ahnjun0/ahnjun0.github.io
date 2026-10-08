@@ -22,40 +22,43 @@ const repoCount = await publicRepoCount("ahnjun0");
   <div class="wrap">
     <Section id="about" title={t.sections.about}>
       {about.paragraphs.map((p) => <p class="ap" set:html={md(p)} />)}
-      <div class="tags" style="margin-top:22px">{about.skills.map((s) => <span>{s}</span>)}</div>
+      <ul class="tags" style="margin-top:22px">{about.skills.map((s) => <li>{s}</li>)}</ul>
     </Section>
 
     <Section id="projects" title={t.sections.projects} sub={t.projectsSub(featured.length, all.length)}>
-      <div class="cards">{featured.map((p, i) => <ProjectCard project={p} index={i} lang={lang} />)}</div>
+      <ul class="cards">{featured.map((p, i) => <li><ProjectCard project={p} index={i} lang={lang} /></li>)}</ul>
       <a class="more" href={`${prefix(lang)}/projects`}>{t.allProjects}</a>
     </Section>
 
     <Section id="experience" title={t.sections.experience}>
-      <div class="tl">
+      <ul class="tl">
         {experience.map((e) => (
-          <div class:list={["it", { now: e.now }]}>
-            <div class="hd"><span class="t">{e.link ? <a href={e.link} target="_blank" rel="noopener" class="tl-link">{e.title} ↗</a> : e.title}</span><span class="mono">{e.range}</span></div>
+          <li class:list={["it", { now: e.now }]}>
+            <div class="hd"><span class="t">{e.link ? <a href={e.link} target="_blank" rel="noopener" class="tl-link">{e.title} <span aria-hidden="true">↗</span><span class="sr-only">({t.newWindow})</span></a> : e.title}</span><span class="mono">{e.range}</span></div>
             <div class="o">{e.org}</div>
             {e.bullets && <ul>{e.bullets.map((b) => <li>{b}</li>)}</ul>}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </Section>
 
     <Section id="awards" title={t.sections.awards} sub={t.awardsSub(awards.length)}>
-      <div class="aw">
+      <ul class="aw">
         {awards.map((a) => {
           const Tag = a.link ? "a" : "div";
           return (
-            <Tag class:list={["r", { soft: a.soft }]} href={a.link} target={a.link ? "_blank" : undefined} rel={a.link ? "noopener" : undefined}>
-              <span class="y">{a.year}</span>
-              <span>{a.name}<span class="o">{a.org}</span></span>
-              <span class="res">{a.result}</span>
-            </Tag>
+            <li>
+              <Tag class:list={["r", { soft: a.soft }]} href={a.link} target={a.link ? "_blank" : undefined} rel={a.link ? "noopener" : undefined}>
+                <span class="y">{a.year}</span>
+                <span>{a.name}<span class="o">{a.org}</span></span>
+                <span class="res">{a.result}</span>
+                {a.link && <span class="sr-only">({t.newWindow})</span>}
+              </Tag>
+            </li>
           );
         })}
-      </div>
-      <div class="tags" style="margin-top:28px">{certifications.map((c) => <span>{c}</span>)}{beyond.map((b) => <span>{b}</span>)}</div>
+      </ul>
+      <ul class="tags" style="margin-top:28px">{certifications.map((c) => <li>{c}</li>)}{beyond.map((b) => <li>{b}</li>)}</ul>
     </Section>
 
     <Section id="contact" title={t.sections.contact}>
@@ -71,6 +74,6 @@ const repoCount = await publicRepoCount("ahnjun0");
   .cl { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 10px; }
   .mail { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
   .cs { color: var(--ink2); margin: 14px 0 0; font-size: 15px; }
-  .cs :global(a) { border-bottom: 1px solid var(--line); }
+  .cs :global(a) { border-bottom: 1px solid var(--mute); }
   .tl-link:hover { color: var(--accent); }
 </style>

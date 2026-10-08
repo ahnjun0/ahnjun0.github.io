@@ -13,8 +13,8 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, ".");
   <article class="article">
     <a class="back" href={`${prefix(lang)}/notes`}>{t.backNotes}</a>
     <div class="eyebrow">{fmt(n.data.date)}{n.data.tags.length > 0 && ` · ${n.data.tags.join(" · ")}`}</div>
-    <h1>{n.data.title}</h1>
+    <h1 lang="ko">{n.data.title}</h1>
     {lang === "en" && <p class="lede">{t.notesEnOnly}</p>}
-    <div class="prose"><Content /></div>
+    <div class="prose" lang="ko"><Content /></div>
   </article>
 </Base>

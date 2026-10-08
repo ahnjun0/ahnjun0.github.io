@@ -56,18 +56,19 @@ const enHref = switchPath(Astro.url.pathname, "en");
     </script>
   </head>
   <body>
+    <a class="skip" href="#main">{t.skip}</a>
     <nav class="nav" aria-label={lang === "ko" ? "주요 메뉴" : "Main navigation"}>
       <div class="wrap">
         <div class="links">
           {nav.map((n) => <a href={n.href} aria-current={current === n.key ? "page" : undefined}>{n.label}</a>)}
         </div>
-        <div class="lang" role="group" aria-label="Language">
+        <div class="lang" role="group" aria-label={t.langLabel}>
           <a href={koHref} data-lang="ko" aria-current={lang === "ko" ? "true" : undefined}>KO</a>
           <a href={enHref} data-lang="en" aria-current={lang === "en" ? "true" : undefined}>EN</a>
         </div>
       </div>
     </nav>
-    <slot />
+    <main id="main" tabindex="-1"><slot /></main>
     <div class="wrap">
       <footer class="site">
         <span>© {new Date().getFullYear()} {site.nameEn}</span>

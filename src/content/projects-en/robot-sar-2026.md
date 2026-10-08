@@ -30,6 +30,8 @@ Driving is a `SCAN → EXPLORE ⇄ APPROACH → RETURN → DONE` state machine, 
 
 Measured under the same lighting as the competition, with the final settings.
 
+Table: Results with the final settings
+
 | Metric | Result |
 |---|---|
 | Red apples | **2 / 2 visited** (in two of three runs of the same settings) |

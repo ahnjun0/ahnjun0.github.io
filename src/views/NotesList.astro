@@ -12,15 +12,17 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, ".");
   <div class="wrap page">
     <h1>{t.nav.notes} <small>{notes.length}</small></h1>
     <p class="intro">{t.notesIntro}</p>
-    <div class="list">
+    <ul class="list">
       {notes.map((n) => (
-        <a href={`${prefix(lang)}/notes/${n.id}`}>
-          <span class="ld">{fmt(n.data.date)}</span>
-          <span><span class="lt">{n.data.title}</span>{n.data.description && <span class="ls">{n.data.description}</span>}</span>
-          <span class="lr">{n.data.tags.slice(0, 2).join(" · ")}</span>
-        </a>
+        <li>
+          <a href={`${prefix(lang)}/notes/${n.id}`}>
+            <span class="ld">{fmt(n.data.date)}</span>
+            <span lang="ko"><span class="lt">{n.data.title}</span>{n.data.description && <span class="ls">{n.data.description}</span>}</span>
+            <span class="lr">{n.data.tags.slice(0, 2).join(" · ")}</span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </Base>
 <style>

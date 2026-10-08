@@ -7,7 +7,7 @@ tags: ["Python", "DeepLearning"]
 
 부산대학교 정보컴퓨터공학부 AID 동아리, 스터디 '밑바닥부터 시작하는 딥러닝 1권 (홀수팀)' 스터디 관련 질문들과, 추가로 공부하면 좋을 내용을 기록합니다.
 
-주 교재 : 사이토 고키 저, 밑바닥부터 시작하는 딥러닝 ([링크](https://search.shopping.naver.com/book/catalog/32486532054?cat_id=50010921&frm=PBOKMOD&query=%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0+%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94+%EB%94%A5%EB%9F%AC%EB%8B%9D&NaPm=ct%3Dlfjfev00%7Cci%3D63d2cbc6e28f9f3a3e6f6caff1ad43becd7611d1%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3D6658236756ea9ddff6f3427c3aea96229d588096))
+주 교재 : 사이토 고키 저, 밑바닥부터 시작하는 딥러닝 ([도서 정보](https://search.shopping.naver.com/book/catalog/32486532054?cat_id=50010921&frm=PBOKMOD&query=%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0+%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94+%EB%94%A5%EB%9F%AC%EB%8B%9D&NaPm=ct%3Dlfjfev00%7Cci%3D63d2cbc6e28f9f3a3e6f6caff1ad43becd7611d1%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3D6658236756ea9ddff6f3427c3aea96229d588096))
 
 ---
 
@@ -43,6 +43,8 @@ $y = \begin{cases} 0 \ (b+w_1x_1 + w_2x_2 \leq \theta) \\\\ 1 \ (b+w_1x_1 + w_2x
 
 AND 게이트의 진리표(Truth Table)는 다음과 같습니다.
 
+표: AND 게이트 진리표
+
 | $x_1$ | $x_2$ | $y$ |
 | ------- | ------- | ----- |
 | 0       | 0       | 0     |
@@ -65,6 +67,8 @@ def AND(x1, x2):
 #### OR (논리합, $\lor$)게이트
 
 OR 게이트의 진리표(Truth Table)는 다음과 같습니다.
+
+표: OR 게이트 진리표
 
 | $x_1$ | $x_2$ | $y$ |
 | ------- | ------- | ----- |
@@ -89,6 +93,8 @@ def OR(x1, x2):
 
 NAND 게이트의 진리표(Truth Table)는 다음과 같습니다.
 
+표: NAND 게이트 진리표
+
 | $x_1$ | $x_2$ | $y$ |
 | ------- | ------- | ----- |
 | 0       | 0       | 1     |
@@ -112,6 +118,8 @@ def NAND(x1, x2):
 
 NOR 게이트의 진리표(Truth Table)는 다음과 같습니다.
 
+표: NOR 게이트 진리표
+
 | $x_1$ | $x_2$ | $y$ |
 | ------- | ------- | ----- |
 | 0       | 0       | 1     |
@@ -134,6 +142,8 @@ def NOR(x1, x2):
 #### XOR (배타적 논리합, $\veebar$)게이트
 
 XOR 게이트의 진리표(Truth Table)는 다음과 같습니다.
+
+표: XOR 게이트 진리표
 
 | $x_1$ | $x_2$ | $y$ |
 | ------- | ------- | ----- |

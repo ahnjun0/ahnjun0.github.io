@@ -9,7 +9,7 @@ tags: ["Python", "DeepLearning"]
 
 블로그에 사용되는 교재의 그림, 수식 등은 [옮긴이 개앞맵시님 repo](https://github.com/WegraLee/deep-learning-from-scratch-2)에서 가져왔습니다.
 
-주 교재 : 사이토 고키 저, 밑바닥부터 시작하는 딥러닝 2 ([링크](https://search.shopping.naver.com/book/catalog/32482740788?cat_id=50010921&frm=PBOKPRO&query=%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0+%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94+%EB%94%A5%EB%9F%AC%EB%8B%9D+2&NaPm=ct%3Dll7ydl08%7Cci%3Dd83faa3f1dfc4602293fd85f5208fc9634129e3c%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3Dfbe1bddbc75c01bb64daf8d7c2894fe0ff606559))
+주 교재 : 사이토 고키 저, 밑바닥부터 시작하는 딥러닝 2 ([도서 정보](https://search.shopping.naver.com/book/catalog/32482740788?cat_id=50010921&frm=PBOKPRO&query=%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0+%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94+%EB%94%A5%EB%9F%AC%EB%8B%9D+2&NaPm=ct%3Dll7ydl08%7Cci%3Dd83faa3f1dfc4602293fd85f5208fc9634129e3c%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3Dfbe1bddbc75c01bb64daf8d7c2894fe0ff606559))
 
 ---
 
@@ -104,7 +104,7 @@ print(np.matmul(A,B))
 행렬을 계산할 때는 그 '형상'(shape)에 주의해야 합니다.
 이 역시 수많은 선형대수학 수업에서 귀에 딱지가 앉도록 강조하는 내용이므로, 사진 한 장으로 갈음하고 넘어가겠습니다.
 
-![형상 확인](/images/notes/2023/scratch2/ch1/fig-1-6.png)
+![그림 1-6 형상 확인: A(3×2)와 B(2×4)를 곱하면 C(3×4). 대응하는 차원(2)의 원소 수가 일치해야 한다](/images/notes/2023/scratch2/ch1/fig-1-6.png)
 
 마지막으로 책에서는, numpy의 학습을 돕기 위해 '[100 Numpy Exercise](https://github.com/rougier/numpy-100)' 사이트를 추천하고 있습니다. 시간 날 때 한번 해보는걸로...
 
@@ -134,7 +134,7 @@ $\mathrm{h = xW + b}$
 
 신경망의 추론이나 학습에서는 다수의 샘플 데이터(**미니배치**, Minibatch)를 한꺼번에 처리합니다. 이렇게 하려면, 행렬 $\mathrm{x}$의 행 각가에 샘플 데이터를 하나씩 저장해야 합니다. 마치 다음 그림처럼요.
 
-![형상 확인](/images/notes/2023/scratch2/ch1/fig-1-9.png)
+![그림 1-9 미니배치 버전의 형상 확인: x(N×2)와 W(2×4)를 곱하면 h(N×4), 편향은 생략](/images/notes/2023/scratch2/ch1/fig-1-9.png)
 
 위의 그림과 같이 형상 확인을 통해 각 미니배치가 올비르게 변환되었는지를 알 수 있습니다.
 
@@ -220,7 +220,7 @@ class Affine:
 
 위에서 구현한 두 계층을 사용하고, 아래의 같이 구성된 신경망의 추론을 구현해 보겠습니다.
 
-![형상 확인](/images/notes/2023/scratch2/ch1/fig-1-11.png)
+![그림 1-11 구현할 신경망의 계층 구성: 입력 x → Affine → Sigmoid → Affine → 출력 s](/images/notes/2023/scratch2/ch1/fig-1-11.png)
 
 ```python
 class TwoLayerNet:

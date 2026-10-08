@@ -13,19 +13,22 @@ const cats = [...new Set(all.map((p) => p.data.category))];
   <div class="wrap page">
     <h1>{t.nav.projects} <small>{all.length}</small></h1>
     <p class="intro" set:html={t.projectsIntro} />
-    <div class="filters" id="filters">
-      <a href="#" data-cat="" aria-current="true">{t.filterAll}</a>
-      {cats.map((c) => <a href="#" data-cat={c}>{c}</a>)}
+    <div class="filters" id="filters" role="group" aria-label={t.filterLabel}>
+      <button type="button" data-cat="" aria-pressed="true">{t.filterAll}</button>
+      {cats.map((c) => <button type="button" data-cat={c} aria-pressed="false">{c}</button>)}
     </div>
-    <div class="list">
+    <p class="sr-only" id="filter-status" aria-live="polite" data-tpl={t.filterStatus}></p>
+    <ul class="list">
       {all.map((p) => (
-        <a href={`${prefix(lang)}/projects/${p.id}`} data-cat={p.data.category}>
-          <span class="ld">{p.data.period}</span>
-          <span><span class="lt">{p.data.title}</span><span class="ls">{p.data.summary}</span></span>
-          <span class="lr">{p.data.result ?? p.data.category}</span>
-        </a>
+        <li data-cat={p.data.category}>
+          <a href={`${prefix(lang)}/projects/${p.id}`}>
+            <span class="ld">{p.data.period}</span>
+            <span><span class="lt">{p.data.title}</span><span class="ls">{p.data.summary}</span></span>
+            <span class="lr">{p.data.result ?? p.data.category}</span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </Base>
 <style>
@@ -36,13 +39,14 @@ const cats = [...new Set(all.map((p) => p.data.category))];
   .intro :global(b) { color: var(--ink); font-weight: 600; }
 </style>
 <script>
-  const links = document.querySelectorAll<HTMLAnchorElement>("#filters a");
-  const rows = document.querySelectorAll<HTMLAnchorElement>(".list a");
-  links.forEach((l) => l.addEventListener("click", (e) => {
-    e.preventDefault();
-    const cat = l.dataset.cat ?? "";
-    links.forEach((x) => x.removeAttribute("aria-current"));
-    l.setAttribute("aria-current", "true");
-    rows.forEach((r) => { r.hidden = !!cat && r.dataset.cat !== cat; });
+  const buttons = document.querySelectorAll<HTMLButtonElement>("#filters button");
+  const rows = document.querySelectorAll<HTMLLIElement>(".list li");
+  const status = document.getElementById("filter-status")!;
+  buttons.forEach((b) => b.addEventListener("click", () => {
+    const cat = b.dataset.cat ?? "";
+    buttons.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    let shown = 0;
+    rows.forEach((r) => { r.hidden = !!cat && r.dataset.cat !== cat; if (!r.hidden) shown++; });
+    status.textContent = status.dataset.tpl!.replace("{n}", String(shown));
   }));
 </script>

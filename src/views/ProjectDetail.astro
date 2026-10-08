@@ -22,7 +22,7 @@ const repoOk = !!(d.repo && meta);
       {d.role && <div><b>{t.facts.role}</b>{d.role}</div>}
       {d.result && <div><b>{t.facts.result}</b>{d.result}</div>}
       <div><b>{t.facts.stack}</b>{d.tags.join(" · ")}</div>
-      {(repoOk || d.link) && <div><b>{t.facts.links}</b>{repoOk && <a href={d.repo} target="_blank" rel="noopener">{t.facts.repo}</a>}{repoOk && d.link && " · "}{d.link && <a href={d.link} target="_blank" rel="noopener">{t.facts.site}</a>}</div>}
+      {(repoOk || d.link) && <div><b>{t.facts.links}</b>{repoOk && <a href={d.repo} target="_blank" rel="noopener">{t.facts.repo}<span class="sr-only">({t.newWindow})</span></a>}{repoOk && d.link && " · "}{d.link && <a href={d.link} target="_blank" rel="noopener">{t.facts.site}<span class="sr-only">({t.newWindow})</span></a>}</div>}
       {repoOk && meta && <div><b>{t.facts.github}</b>{meta.language && `${meta.language} · `}{meta.stars > 0 && `★ ${meta.stars} · `}{t.facts.lastCommit} {meta.pushedAt}</div>}
     </div>
     <div class="prose"><Content /></div>

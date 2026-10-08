@@ -13,7 +13,7 @@ tags: ["Contest", "PNU"]
 
 결과부터 말하면, **Beginner** 대회에서 **은상(2등상)**을 수상하기'는' 했습니다.
 
-![수상자 명단](/images/notes/2023/coderace/award.jpg)
+![2023 CodeRace Beginner 수상자 명단 표: 금상 1명, 은상 2명(그중 한 명이 안*영), 동상 5명. 다른 수상자의 이름과 학번은 가려져 있음](/images/notes/2023/coderace/award.jpg)
 
 *수상자 명단*
 

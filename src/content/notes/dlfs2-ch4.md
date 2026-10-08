@@ -9,7 +9,7 @@ tags: ["Python", "DeepLearning"]
 
 블로그에 사용되는 교재의 그림, 수식 등은 [옮긴이 개앞맵시님 repo](https://github.com/WegraLee/deep-learning-from-scratch-2)에서 가져왔습니다.
 
-주 교재 : 사이토 고키 저, 밑바닥부터 시작하는 딥러닝 2 ([링크](https://search.shopping.naver.com/book/catalog/32482740788?cat_id=50010921&frm=PBOKPRO&query=%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0+%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94+%EB%94%A5%EB%9F%AC%EB%8B%9D+2&NaPm=ct%3Dll7ydl08%7Cci%3Dd83faa3f1dfc4602293fd85f5208fc9634129e3c%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3Dfbe1bddbc75c01bb64daf8d7c2894fe0ff606559))
+주 교재 : 사이토 고키 저, 밑바닥부터 시작하는 딥러닝 2 ([도서 정보](https://search.shopping.naver.com/book/catalog/32482740788?cat_id=50010921&frm=PBOKPRO&query=%EB%B0%91%EB%B0%94%EB%8B%A5%EB%B6%80%ED%84%B0+%EC%8B%9C%EC%9E%91%ED%95%98%EB%8A%94+%EB%94%A5%EB%9F%AC%EB%8B%9D+2&NaPm=ct%3Dll7ydl08%7Cci%3Dd83faa3f1dfc4602293fd85f5208fc9634129e3c%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3Dfbe1bddbc75c01bb64daf8d7c2894fe0ff606559))
 
 ---
 
