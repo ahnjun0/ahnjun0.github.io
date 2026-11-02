@@ -24,7 +24,7 @@ export const hero = {
 export const about = {
   paragraphs: [
     "**LLM 파인튜닝**부터 **공공데이터 분석**, **게임 AI**, **브라우저 확장**까지. 모델 한 층에 머무르기보다, 문제를 정의하는 일부터 배포해서 쓰이게 하는 일까지 전부 해보는 쪽을 택해 왔습니다.",
-    "2022년 학부 AI 대회 금상 두 개로 시작했고, 국방통합데이터센터에서 보안관제·체계관제를 맡았습니다. 2026년 복학 후 KAIST 몰입캠프, AID 회장, 카카오테크캠퍼스를 연달아 지나왔고, 제5회 대학 연합 딥러닝 챌린지 2026에서는 개인전 3등상을 받았습니다.",
+    "2022년 학부 AI 대회 금상 두 개로 시작했고, 국방통합데이터센터에서 보안관제·체계관제를 맡았습니다. 2026년 복학 후 KAIST 몰입캠프, AID 회장, 카카오테크캠퍼스를 연달아 지나왔고, 제5회 대학 연합 딥러닝 챌린지 2026에서는 개인전 3등상을 받았습니다. 2026년 10월부터는 네이버클라우드에서 HyperCLOVA X 학습 데이터를 설계하고 합성하는 인턴으로 일하고 있습니다.",
   ],
   skills: ["Python", "PyTorch", "LoRA / vLLM", "Django", "FastAPI", "TypeScript", "Docker", "LiveKit", "Chrome Extension"],
 };
@@ -34,8 +34,12 @@ export type Experience = {
 };
 export const experience: Experience[] = [
   {
-    title: "카카오테크캠퍼스 4기 · IRYA", org: "인프라 · 백엔드", range: "2026.05 – 현재", now: true, link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
-    bullets: ["AI 화상면접 지원 서비스의 LiveKit 자체 호스팅, Caddy HTTPS, 배포 파이프라인 담당"],
+    title: "네이버클라우드 · HyperCLOVA X", org: "학습 데이터 설계 및 합성 · 체험형 인턴", range: "2026.10 – 현재", now: true,
+    bullets: ["LLM 후공정(Post-training) 학습 데이터 설계·합성·품질 검증 (2027.01까지, 성남)"],
+  },
+  {
+    title: "카카오테크캠퍼스 4기 · IRYA", org: "PM · 인프라 · 백엔드", range: "2026.05 – 2026.10", link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
+    bullets: ["AI 화상면접 지원 서비스의 LiveKit 자체 호스팅, Caddy HTTPS, 배포 파이프라인 담당. 10월 인턴 입과로 팀 인계"],
   },
   {
     title: "AID 부산대 AI 동아리", org: "회장", range: "2026.03 – 2026.08", link: "https://github.com/PNU-AID",
@@ -101,15 +105,19 @@ export const heroEn = {
 export const aboutEn = {
   paragraphs: [
     "From **LLM fine-tuning** to **public-data analysis**, **game AI**, and **browser extensions**. Rather than staying in one layer, I've chosen to do the whole thing — from defining the problem to shipping something people actually use.",
-    "I started with two gold prizes at undergraduate AI contests in 2022, then handled security and systems monitoring at the Defense Integrated Data Center during military service. Since returning in 2026 I've gone through KAIST Madcamp, a term as president of AID, and Kakao Tech Campus, and took 3rd Prize (solo) at the 5th Inter-University Deep Learning Challenge 2026.",
+    "I started with two gold prizes at undergraduate AI contests in 2022, then handled security and systems monitoring at the Defense Integrated Data Center during military service. Since returning in 2026 I've gone through KAIST Madcamp, a term as president of AID, and Kakao Tech Campus, and took 3rd Prize (solo) at the 5th Inter-University Deep Learning Challenge 2026. Since October 2026 I've been an intern at NAVER Cloud, designing and synthesizing training data for HyperCLOVA X.",
   ],
   skills: about.skills,
 };
 
 export const experienceEn: Experience[] = [
   {
-    title: "Kakao Tech Campus, 4th cohort · IRYA", org: "Infrastructure · Backend", range: "May 2026 – present", now: true, link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
-    bullets: ["AI mock video-interview service. Self-hosted LiveKit, Caddy with automatic HTTPS, deployment pipeline."],
+    title: "NAVER Cloud · HyperCLOVA X", org: "Training Data Design & Synthesis · Intern", range: "Oct 2026 – present", now: true,
+    bullets: ["Post-training data for an LLM: dataset design, synthetic data generation, quality validation (through Jan 2027, Seongnam)."],
+  },
+  {
+    title: "Kakao Tech Campus, 4th cohort · IRYA", org: "PM · Infrastructure · Backend", range: "May 2026 – Oct 2026", link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
+    bullets: ["AI mock video-interview service. Self-hosted LiveKit, Caddy with automatic HTTPS, deployment pipeline. Handed over in Oct 2026 to start the internship."],
   },
   {
     title: "AID — Pusan National University AI Club", org: "President", range: "Mar 2026 – Aug 2026", link: "https://github.com/PNU-AID",
