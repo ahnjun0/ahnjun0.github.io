@@ -35,7 +35,7 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     title: "네이버클라우드 · HyperCLOVA X", org: "학습 데이터 설계 및 합성 · 체험형 인턴", range: "2026.10 – 현재", now: true,
-    bullets: ["LLM 후공정(Post-training) 학습 데이터 설계·합성·품질 검증 (2027.01까지, 성남)"],
+    bullets: ["LLM 학습 데이터 설계·합성·품질 검증 (2027.01까지, 성남)"],
   },
   {
     title: "카카오테크캠퍼스 4기 · IRYA", org: "PM · 인프라 · 백엔드", range: "2026.05 – 2026.10", link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
@@ -113,7 +113,7 @@ export const aboutEn = {
 export const experienceEn: Experience[] = [
   {
     title: "NAVER Cloud · HyperCLOVA X", org: "Training Data Design & Synthesis · Intern", range: "Oct 2026 – present", now: true,
-    bullets: ["Post-training data for an LLM: dataset design, synthetic data generation, quality validation (through Jan 2027, Seongnam)."],
+    bullets: ["Training data for an LLM: dataset design, synthetic data generation, quality validation (through Jan 2027, Seongnam)."],
   },
   {
     title: "Kakao Tech Campus, 4th cohort · IRYA", org: "PM · Infrastructure · Backend", range: "May 2026 – Oct 2026", link: "https://github.com/kakaotechcampus-4/ktc4-pusan-1",
